@@ -191,7 +191,8 @@ cite { color: var(--muted); font-size: 1rem; font-style: normal; font-weight: 60
 .process-list, .guide-steps { margin: 0; padding-left: 36px; }
 .process-list li { padding: 0 0 21px 8px; margin: 0 0 21px; border-bottom: 1px solid var(--line); }
 .process-list li:last-child { margin-bottom: 0; border-bottom: 0; }
-.process-list li::marker, .guide-steps li::marker { color: var(--green); font-size: 1.35rem; font-weight: 700; }
+.process-list li::marker { color: var(--green); font-size: 1.17rem; font-weight: 700; }
+.guide-steps li::marker { color: var(--green); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.7rem, 2.6vw, 2.25rem); font-weight: 400; }
 .process-list h3 { margin-bottom: 4px; font-size: 1.17rem; }
 .process-list p { max-width: 570px; margin: 0; color: var(--muted); font-size: 1rem; }
 .resource-section h2 { margin-bottom: 33px; }
@@ -269,7 +270,7 @@ cite { color: var(--muted); font-size: 1rem; font-style: normal; font-weight: 60
 .mission h3 { margin-bottom: 18px; }
 .mission-list { margin: 0; padding-left: 30px; }
 .mission-list li { padding: 4px 0; }
-.mission-list li::marker { color: var(--green); font-size: 1.25rem; font-weight: 700; }
+.mission-list li::marker { color: var(--green); font-size: 1rem; font-weight: 400; }
 .team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 34px; }
 .person img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .person h3 { margin: 16px 0 4px; font-size: 1.05rem; }

@@ -14,7 +14,7 @@ Source reviewed: `https://tinyurl.com/IW-Canada`, which redirects to `https://si
 | FAQ | `/faq/` | All six questions, resources, original FSSO cost claim, calculators, possible consequences without a will, disclaimer |
 | Team | `/team/` | History since 2020, volunteer role, 500+ community member claim, four named volunteers, email, one current WhatsApp group and Signal group |
 
-The source’s repeated Google Sites navigation, “Report abuse” controls and duplicate workshop block were removed from the content flow. The team portraits were reused as optimized WebP files. The lawyers image was transcribed into accessible text cards, retaining its names, organizations, websites, emails, telephone numbers and addresses. All original downloadable documents remain links to the source’s Google Drive files rather than copied local files.
+The source’s repeated Google Sites navigation, “Report abuse” controls and duplicate workshop block were removed from the content flow. The team portraits were reused as optimized WebP files; Mohammad Shabbir’s portrait was later replaced with the higher-resolution photo provided by the owner. The lawyers image was transcribed into accessible text cards, retaining its names, organizations, websites, emails, telephone numbers and addresses. All original downloadable documents remain links to the source’s Google Drive files rather than copied local files.
 
 ## Source link and factual issues
 

@@ -6,7 +6,7 @@ The site-owned interface was reviewed against WCAG 2.2 AA criteria relevant to t
 
 - Raised visible site text to at least 16 CSS pixels, including navigation, footer, document labels, directory notes and button text.
 - Added a dark theme with a round, keyboard-accessible color-mode menu. Its three radio choices are System, Light and Dark. System is the default and follows the operating-system preference; choosing it clears a saved override.
-- Enlarged the numbered markers in the process, guide and mission lists so they are easier to see alongside the text.
+- Matched each numbered marker to the size of the text immediately following it in the process, guide and mission lists.
 - Gave the workshop and each seminar a titled, lazy-loaded YouTube iframe plus a direct YouTube link. The workshop appears before the five-step guide.
 - Kept semantic headings and lists, visible focus outlines, the skip link, mobile navigation and reduced-motion handling.
 
