@@ -39,6 +39,8 @@ Cloudflare Pages settings:
 
 For a direct deployment, run `npm run build` and `npx wrangler pages deploy dist --project-name islamicwillscanada --branch main`. A Git connected Pages project can use the settings above for automatic deployments.
 
+This Pages project currently uses Direct Upload. An attempt to create a Git-integrated Pages project through the Cloudflare API returned an internal Git installation error from the connected Cloudflare account. Cloudflare does not allow converting an existing Direct Upload project to Git integration; after that installation is repaired, the project would need to be recreated with Git integration, or a separate CI workflow can deploy through Wrangler. No Cloudflare API token or GitHub secret is stored in this repository.
+
 Canonical URLs and sitemap entries use the default `pages.dev` domain. If a custom domain is attached, update `base` in `src/build.js` and the sitemap URL in `public/robots.txt` before deploying.
 
 ## Content maintenance

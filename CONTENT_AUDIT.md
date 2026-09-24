@@ -19,6 +19,7 @@ The source’s repeated Google Sites navigation, “Report abuse” controls and
 ## Source link and factual issues
 
 - The original `miraas-in-islam.com/english/Massail.aspx` calculator link did not resolve (DNS failure). It is named, but not offered as an active link in the new FAQ. The other four calculators resolved during inspection, though their accuracy and availability are not endorsed.
+- Four websites printed in the source’s lawyer/scholar image were unavailable or stuck in a redirect loop during review: `www.ameerlaw.com`, `www.zalaws.com`, `www.kuttyjilani.com`, and `www.bridgehumanity.com`. Their text remains in the directory, without active links. The other website links resolved during inspection.
 - The source FAQ states FSSO family membership costs **$150 one time** and a shared funeral cost “generally does not exceed $10.” The FSSO website resolved, but those historical figures have not been independently confirmed as current. They are preserved and attributed to the original FAQ with a prompt to confirm directly.
 - The seminars and workshops are dated 2021. The team page says its WhatsApp groups have **500+ members**; that is a source claim and has not been independently updated.
 - The source says notarization by a lawyer is not mandatory but highly recommended. The rebuild presents this explicitly as the original guide’s wording, not a new legal conclusion. The source also uses broad “Canada/WEST” language; the new FAQ frames its list as possible concerns instead of guaranteeing outcomes.
