@@ -1,0 +1,10 @@
+{
+  "name": "islamicwillscanada",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "npm run build && npx wrangler pages dev dist"
+  }
+}
