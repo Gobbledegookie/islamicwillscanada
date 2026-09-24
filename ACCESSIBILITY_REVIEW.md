@@ -5,7 +5,8 @@ The site-owned interface was reviewed against WCAG 2.2 AA criteria relevant to t
 ## Changes
 
 - Raised visible site text to at least 16 CSS pixels, including navigation, footer, document labels, directory notes and button text.
-- Added a dark theme that follows the operating-system preference until a visitor chooses a theme. The choice persists across pages. The toggle exposes its state with `aria-pressed` and is keyboard operable.
+- Added a dark theme with a native, keyboard-accessible Theme dropdown. It defaults to System, follows the operating-system preference, and lets visitors choose Light or Dark across pages. Choosing System clears the saved override.
+- Enlarged the numbered markers in the process, guide and mission lists so they are easier to see alongside the text.
 - Gave the workshop and each seminar a titled, lazy-loaded YouTube iframe plus a direct YouTube link. The workshop appears before the five-step guide.
 - Kept semantic headings and lists, visible focus outlines, the skip link, mobile navigation and reduced-motion handling.
 
@@ -17,7 +18,7 @@ The site-owned interface was reviewed against WCAG 2.2 AA criteria relevant to t
 | Controls and focus indicators | Light control border is 4.49:1 against paper; dark control border is 7.82:1. Focus outline is 5.05:1 on light paper and 9.52:1 on dark paper. |
 | Text size and narrow viewport | All seven pages had no visible site text below 16px. The seminar and creation pages were checked at a 320px viewport with no horizontal overflow; video players remain at least 200px high. All seven pages were also checked for overflow at phone width. |
 | Automated accessibility scan | axe-core 4.13 found zero violations on all seven pages when excluding the cross-origin YouTube player internals. Home also had zero with no exclusions. |
-| Theme and navigation interaction | Checked light and dark rendering, dark-mode persistence after reload, and mobile navigation at narrow width. |
+| Theme and navigation interaction | Checked light and dark rendering, saved preferences after reload, System following the operating-system preference, and mobile navigation at narrow width. |
 
 The contrast calculations use the [WCAG contrast formula and 4.5:1 / 3:1 AA thresholds](https://www.w3.org/TR/wcag/#contrast-minimum). The site also follows the [operating-system color preference](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) and advertises the active control color scheme.
 

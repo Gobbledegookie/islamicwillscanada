@@ -10,7 +10,7 @@ Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pa
 - `public/robots.txt` and generated `sitemap.xml`.
 - `dist/`: generated output; deliberately ignored by Git.
 
-The site uses one generated HTML file per route, so all substantive content is available without JavaScript. The browser script toggles the mobile navigation and lets visitors override the system light/dark preference. Workshop and seminar videos use lazy-loaded YouTube embeds with direct video links as alternatives. There is no contact form or online will creation form; visitors use the email, document, seminar and group links.
+The site uses one generated HTML file per route, so all substantive content is available without JavaScript. The browser script toggles the mobile navigation and powers the Theme dropdown (System by default, with saved Light or Dark overrides). Workshop and seminar videos use lazy-loaded YouTube embeds with direct video links as alternatives. There is no contact form or online will creation form; visitors use the email, document, seminar and group links.
 
 ## Local development
 
