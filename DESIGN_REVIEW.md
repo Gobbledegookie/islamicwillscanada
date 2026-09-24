@@ -29,4 +29,6 @@ The [Canada.ca content design guidance](https://design.canada.ca/designing-conte
 - The ornamental 01–05 badges were removed; the five-step content and order remain.
 - Built all seven pages and the 404 page locally.
 - Checked phone-width pages for one H1 and horizontal overflow; checked mobile navigation and the seminar and directory layouts visually.
-- Production deployment and URL checks are recorded separately when the revision is released.
+- Checked the deployed HTTPS site: all seven pages return 200 with one H1, unique titles, descriptions, Open Graph titles and correct canonical URLs. All 14 distinct internal destinations and assets return 200; the sitemap and robots file return 200, and a missing page returns 404.
+- Inspected the deployed page at phone width: no horizontal overflow, the mobile menu opens, and the browser reported no console errors.
+- Confirmed the Cloudflare Pages project is Git-connected to the repository and the production deployment succeeded.
