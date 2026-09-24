@@ -7,9 +7,9 @@ Source reviewed: `https://tinyurl.com/IW-Canada`, which redirects to `https://si
 | Original page | New route | Preserved content |
 | --- | --- | --- |
 | Home | `/` | Hadith and Urdu quotation (Bukhari 2738), mission, volunteer and non-profit status, free resource focus, five-step summary, disclaimer |
-| Will Creation | `/will-creation/` | Full five-step method, witness/executor/guardian distinctions, notarization wording, Windsor template, filled example, workshop and lawyer Q&A document |
+| Will Creation | `/will-creation/` | Hands-on workshop video at the top, full five-step method, witness/executor/guardian distinctions, notarization wording, Windsor template, filled example and lawyer Q&A document |
 | Will Templates | `/will-templates/` | Ontario masajid collection, Windsor recommendation, original documents |
-| Seminars | `/seminars/` | Three 2021 recordings, languages, dates, Hijri dates, PDF companions, workshop folder, knowledge base, filled template and Q&A |
+| Seminars | `/seminars/` | Three embedded 2021 recordings, languages, dates, Hijri dates, PDF companions, workshop folder, knowledge base, filled template and Q&A |
 | Lawyers | `/lawyers/` | Non-endorsement statement, original linked folder, names and contacts from the source page’s embedded image |
 | FAQ | `/faq/` | All six questions, resources, original FSSO cost claim, calculators, possible consequences without a will, disclaimer |
 | Team | `/team/` | History since 2020, volunteer role, 500+ community member claim, four named volunteers, email, one current WhatsApp group and Signal group |

@@ -1,6 +1,6 @@
 # Islamic Will Canada
 
-Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pages.dev). The site presents Islamic Will Canada's guidance and resources in a clearer layout. See [CONTENT_AUDIT.md](CONTENT_AUDIT.md) for the content inventory and items needing review, and [DESIGN_REVIEW.md](DESIGN_REVIEW.md) for the visual before-and-after analysis.
+Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pages.dev). The site presents Islamic Will Canada's guidance and resources in a clearer layout. See [CONTENT_AUDIT.md](CONTENT_AUDIT.md) for the content inventory and items needing review, [DESIGN_REVIEW.md](DESIGN_REVIEW.md) for the visual before-and-after analysis, and [ACCESSIBILITY_REVIEW.md](ACCESSIBILITY_REVIEW.md) for accessibility checks and remaining video-media work.
 
 ## Stack and structure
 
@@ -10,7 +10,7 @@ Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pa
 - `public/robots.txt` and generated `sitemap.xml`.
 - `dist/`: generated output; deliberately ignored by Git.
 
-The site uses one generated HTML file per route, so all substantive content is available without JavaScript. The only browser script toggles the mobile navigation. There is no contact form or online will creation form; visitors use the email, document, seminar and group links.
+The site uses one generated HTML file per route, so all substantive content is available without JavaScript. The browser script toggles the mobile navigation and lets visitors override the system light/dark preference. Workshop and seminar videos use lazy-loaded YouTube embeds with direct video links as alternatives. There is no contact form or online will creation form; visitors use the email, document, seminar and group links.
 
 ## Local development
 
