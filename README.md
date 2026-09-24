@@ -1,6 +1,6 @@
 # Islamic Will Canada
 
-Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pages.dev). The site presents Islamic Will Canada's guidance and resources in a clearer layout. See [CONTENT_AUDIT.md](CONTENT_AUDIT.md) for the content inventory and items needing review.
+Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pages.dev). The site presents Islamic Will Canada's guidance and resources in a clearer layout. See [CONTENT_AUDIT.md](CONTENT_AUDIT.md) for the content inventory and items needing review, and [DESIGN_REVIEW.md](DESIGN_REVIEW.md) for the visual before-and-after analysis.
 
 ## Stack and structure
 
