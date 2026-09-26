@@ -259,8 +259,11 @@ cite { color: var(--muted); font-size: 1rem; font-style: normal; font-weight: 60
 .faq-list details[open] summary::after { content: '−'; }
 .faq-list details > div { padding: 0 10px 26px 0; }
 .faq-list details > div p { max-width: 710px; }
-.directory-section { max-width: 1040px; }
+.page-hero.directory-hero { padding-bottom: 16px; border-bottom: 0; }
+.section.directory-section { max-width: 1040px; padding-top: 12px; }
+.directory-section > .note { margin-top: 0; }
 .directory-heading { display: flex; align-items: baseline; gap: 25px; margin: 65px 0 16px; }
+.directory-section > .note + .directory-heading { margin-top: 38px; }
 .directory-heading h2, .directory-heading p { margin: 0; }
 .directory-heading p { color: var(--muted); }
 .directory-grid { display: grid; gap: 0; }

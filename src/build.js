@@ -35,7 +35,7 @@ const external = (href, label, cls = '') => `<a class="${cls}" href="${href.repl
 const button = (href,label,secondary=false) => `<a class="button ${secondary?'button-secondary':''}" href="${href}">${label}</a>`;
 const extButton = (href,label,secondary=false) => external(href,label,`button ${secondary?'button-secondary':''}`);
 const eyebrow = t => `<p class="section-label">${t}</p>`;
-const intro = (k,title,lead) => `<section class="page-hero container">${eyebrow(k)}<h1>${title}</h1><p class="lead">${lead}</p></section>`;
+const intro = (k,title,lead,extraClass='') => `<section class="page-hero container${extraClass ? ` ${extraClass}` : ''}">${eyebrow(k)}<h1>${title}</h1><p class="lead">${lead}</p></section>`;
 const resource = (type,title,detail,href) => `<li class="resource"><small>${type}</small><h3>${external(href,title)}</h3><p>${detail}</p></li>`;
 const videoEmbed = (watchUrl,title) => { const id = new URL(watchUrl).searchParams.get('v'); if (!/^[\w-]{11}$/.test(id || '')) throw new Error(`Invalid YouTube video: ${watchUrl}`); return `<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${title}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`; };
 const seminar = (language,title,when,recording,material,label) => `<article class="seminar"><p class="seminar-language">${language}</p><div><h2>${title}</h2><p>${when}</p>${videoEmbed(recording,`${language}: ${title}`)}<div class="link-pair">${external(recording,'Watch on YouTube')}${external(material,label)}</div></div></article>`;
@@ -72,7 +72,7 @@ const pages = [
   },
   {
     slug:'lawyers', title:'Lawyers & Scholars Directory | Islamic Will Canada', description:'View lawyers and scholars known to Islamic Will Canada, with our non-endorsement notice.',
-    body:`${intro('Community directory','Lawyers & scholars','People known to Islamic Will Canada, with updated professional information where it could be verified. We do not promote, market or take commission from any lawyer.')}
+    body:`${intro('Community directory','Lawyers & scholars','People known to Islamic Will Canada, with updated professional information where it could be verified. We do not promote, market or take commission from any lawyer.','directory-hero')}
     <section class="section container directory-section"><div class="note"><strong>Check before contacting</strong><p>Professional roles, services and contact details can change. Current details are shown where verified; earlier directory details are preserved within each profile for reference. Confirm directly before relying on any listing.</p></div><div class="directory-heading"><h2>Lawyers</h2><p>Profiles are for information, not a referral or endorsement.</p></div><div class="directory-grid">${profiles.filter(p=>!p.role.startsWith('Imam')).map(profile).join('')}</div><div class="directory-heading"><h2>Scholars</h2></div><div class="directory-grid">${profiles.filter(p=>p.role.startsWith('Imam')).map(profile).join('')}</div><div class="actions">${extButton(links.lawyers,'Open resource folder')}</div></section>${disclaimer}`
   },
   {
