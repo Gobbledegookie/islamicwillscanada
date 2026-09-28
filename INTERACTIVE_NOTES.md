@@ -28,4 +28,6 @@ The source document's long inheritance appendix is retained as reference text. T
 
 ## Privacy and maintenance
 
-Form state exists only in browser memory. There is no API endpoint, account, analytics event, local storage of answers, or recovery after a refresh. The site-wide theme preference remains separate. Build-time dependencies are pinned in `package-lock.json`; `dist/` is generated and ignored.
+Form state exists only in browser memory. While the visitor types the Article 1 address, its text is sent to the public Photon lookup service for Canadian suggestions. The address field remains editable if suggestions are unavailable or incomplete. Other answers are not sent to a service. There is no account, analytics event, local storage of answers, or recovery after a refresh. The site-wide theme preference remains separate. Build-time dependencies are pinned in `package-lock.json`; `dist/` is generated and ignored.
+
+Photon's public endpoint is a demo service with no uptime guarantee and usage throttling. The field waits until five characters have been typed, debounces requests, limits results to six Canadian street addresses, and allows manual entry. If this experiment becomes a high-traffic service, replace the endpoint with an address provider or self-hosted instance that has suitable availability and privacy terms.

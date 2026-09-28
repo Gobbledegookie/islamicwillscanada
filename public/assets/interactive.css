@@ -33,6 +33,16 @@
 .iw-field textarea { resize: vertical; min-height: 140px; }
 .iw-field input::placeholder { color: var(--muted); }
 .iw-field input[aria-invalid="true"] { border-color: #b24538; border-width: 2px; }
+.iw-address-field { position: relative; }
+.iw-address-note { margin: 10px 0 3px; color: var(--muted); }
+.iw-address-privacy { margin: 0; color: var(--muted); font-size: .94rem; }
+.iw-address-privacy a { color: var(--green); }
+.iw-address-status { margin: 8px 0 0; color: var(--muted); font-size: .94rem; }
+.iw-address-status:empty { display: none; }
+.iw-address-options { position: absolute; z-index: 5; inset-inline: 0; top: 100%; max-height: 280px; overflow-y: auto; margin: 4px 0 0; padding: 5px; border: 1px solid var(--control-line); border-radius: 4px; background: var(--paper); box-shadow: 0 12px 24px var(--nav-shadow); list-style: none; }
+.iw-address-options[hidden] { display: none; }
+.iw-address-options li { padding: 10px 12px; border-radius: 3px; color: var(--ink); cursor: pointer; }
+.iw-address-options li:hover, .iw-address-options li[aria-selected="true"] { background: var(--wash); }
 .iw-help { margin: -3px 0 9px; font-size: .94rem; }
 .iw-help summary { width: fit-content; color: var(--green); cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
 .iw-help p { max-width: 540px; margin: 6px 0 0; color: var(--muted); }

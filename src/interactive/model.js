@@ -3,7 +3,7 @@ import articles from './windsor-articles.json' with { type: 'json' };
 import appendix from './windsor-appendix.json' with { type: 'json' };
 
 export const initialAnswers = () => ({
-  testatorName: '', testatorAddress: '', noFamily: false, family: [],
+  testatorName: '', testatorAddress: '', testatorUnit: '', noFamily: false, family: [],
   funeralPrimaryName: '', funeralPrimaryAddress: '', funeralAlternateName: '', funeralAlternateAddress: '',
   executorPrimaryName: '', executorPrimaryAddress: '', executorAlternateName: '', executorAlternateAddress: '',
   hasMinorChildren: '', spouseGuardianName: '', guardianPrimaryName: '', guardianPrimaryAddress: '', guardianAlternateName: '', guardianAlternateAddress: '',
@@ -66,7 +66,7 @@ export function makeWillBlocks(a) {
     ...instructions.map(p),
     h('Last Will and Testament'),
     h('Article 1: Identity of testator and heirs'),
-    p(`I, ${value(a, 'testatorName')}, presently residing at ${value(a, 'testatorAddress')}, being of sound mind and memory, do hereby revoke any and all former Wills and Codicils made by me, and do make, ordain, publish, and declare this my last Will and Testament. At the time of the execution of this Will, my immediate family consists of:`),
+    p(`I, ${value(a, 'testatorName')}, presently residing at ${value(a, 'testatorUnit') ? `Unit ${value(a, 'testatorUnit')}, ` : ''}${value(a, 'testatorAddress')}, being of sound mind and memory, do hereby revoke any and all former Wills and Codicils made by me, and do make, ordain, publish, and declare this my last Will and Testament. At the time of the execution of this Will, my immediate family consists of:`),
     table(['Name', 'Relationship', 'Date of birth'], compact(a.family).map(x => [x.name, x.relationship, humanDate(x.birthDate) || 'Not supplied']))
   ];
 
