@@ -1,4 +1,5 @@
 import { initialAnswers, repeatFields } from './model.js';
+import { makeSampleAnswers } from './sample.js';
 
 const root = document.getElementById('interactive-root');
 const answers = initialAnswers();
@@ -135,7 +136,7 @@ function render() {
   stopAddressLookup();
   const step = steps[current];
   const progress = Math.round((current / (steps.length - 1)) * 100);
-  root.innerHTML = `<div class="iw-layout"><nav class="iw-progress" aria-label="Form sections"><p class="iw-progress-title">Your draft</p><div class="iw-progress-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}"><span style="width:${progress}%"></span></div><ol>${steps.map((s, i) => `<li><button type="button" data-go="${i}" ${i > furthest ? 'disabled' : ''} ${i === current ? 'aria-current="step"' : ''}><span class="iw-step-index">${i + 1}</span><span>${s.label}<small>${s.status}</small></span></button></li>`).join('')}</ol></nav><div class="iw-main"><div class="iw-mobile-progress">Section ${current + 1} of ${steps.length}<span>${progress}%</span></div><p class="iw-kicker">${step.kicker}</p><h2 id="iw-step-title" tabindex="-1">${step.title}</h2><p class="iw-step-intro">${step.intro}</p><form id="iw-form" novalidate><div id="iw-errors" role="alert" aria-live="assertive" tabindex="-1"></div>${stepFields(current)}</form>${current < steps.length - 1 ? `<div class="iw-actions"><button type="button" class="button" data-next>Continue <span aria-hidden="true">→</span></button>${current ? '<button type="button" class="iw-back" data-back>Back</button>' : ''}</div>` : `<div class="iw-actions"><button type="button" class="iw-back" data-back>Back to witnesses</button></div>`}</div><aside class="iw-guidance"><p class="iw-guidance-label">Things to keep in mind</p><ul>${step.tips.map(t => `<li>${t}</li>`).join('')}</ul><div class="iw-guidance-foot">Based on the <a href="https://drive.google.com/open?id=1dda59Ce2HcNm8Cp1ZHMrlQ_wZZnChfPO" target="_blank" rel="noopener noreferrer">Windsor Islamic Association template<span class="sr-only"> (opens in a new tab)</span></a>.</div></aside></div>`;
+  root.innerHTML = `<div class="iw-sample-tools"><div><strong>Test the full form</strong><p>Fill every section with fictional information. This replaces any answers in this tab.</p></div><button type="button" class="iw-seed-button" data-seed>${answers.sampleData ? 'Generate new sample data' : 'Fill with sample data'}</button></div>${answers.sampleData ? '<p class="iw-sample-warning" role="status"><strong>Sample data · testing only.</strong> The names, addresses and financial details below are fictional. Downloads will be marked as samples.</p>' : ''}<div class="iw-layout"><nav class="iw-progress" aria-label="Form sections"><p class="iw-progress-title">Your draft</p><div class="iw-progress-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}"><span style="width:${progress}%"></span></div><ol>${steps.map((s, i) => `<li><button type="button" data-go="${i}" ${i > furthest ? 'disabled' : ''} ${i === current ? 'aria-current="step"' : ''}><span class="iw-step-index">${i + 1}</span><span>${s.label}<small>${s.status}</small></span></button></li>`).join('')}</ol></nav><div class="iw-main"><div class="iw-mobile-progress">Section ${current + 1} of ${steps.length}<span>${progress}%</span></div><p class="iw-kicker">${step.kicker}</p><h2 id="iw-step-title" tabindex="-1">${step.title}</h2><p class="iw-step-intro">${step.intro}</p><form id="iw-form" novalidate><div id="iw-errors" role="alert" aria-live="assertive" tabindex="-1"></div>${stepFields(current)}</form>${current < steps.length - 1 ? `<div class="iw-actions"><button type="button" class="button" data-next>Continue <span aria-hidden="true">→</span></button>${current ? '<button type="button" class="iw-back" data-back>Back</button>' : ''}</div>` : `<div class="iw-actions"><button type="button" class="iw-back" data-back>Back to witnesses</button></div>`}</div><aside class="iw-guidance"><p class="iw-guidance-label">Things to keep in mind</p><ul>${step.tips.map(t => `<li>${t}</li>`).join('')}</ul><div class="iw-guidance-foot">Based on the <a href="https://drive.google.com/open?id=1dda59Ce2HcNm8Cp1ZHMrlQ_wZZnChfPO" target="_blank" rel="noopener noreferrer">Windsor Islamic Association template<span class="sr-only"> (opens in a new tab)</span></a>.</div></aside></div>`;
 }
 
 function capture(event) {
@@ -205,7 +206,7 @@ async function download(format) {
       const [regular, bold] = await Promise.all([fetchBytes('NotoSans.ttf'), fetchBytes('NotoSans-Bold.ttf')]);
       blob = await makePdf(answers, regular, bold, images);
     }
-    const file = `Islamic-Will-Draft-${answers.testatorName.trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'Will'}.${format}`;
+    const file = `${answers.sampleData ? 'SAMPLE-' : ''}Islamic-Will-Draft-${answers.testatorName.trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'Will'}.${format}`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a'); link.href = url; link.download = file; document.body.append(link); link.click(); link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 60000);
@@ -247,7 +248,13 @@ root.addEventListener('pointerdown', event => {
 });
 root.addEventListener('click', event => {
   const button = event.target.closest('button'); if (!button) return;
-  if (button.dataset.add) {
+  if (button.hasAttribute('data-seed')) {
+    Object.assign(answers, initialAnswers(), makeSampleAnswers());
+    current = steps.length - 1;
+    furthest = current;
+    render();
+    document.getElementById('iw-step-title').focus();
+  } else if (button.dataset.add) {
     answers[button.dataset.add].push(Object.fromEntries(repeatFields[button.dataset.add].map(key => [key, ''])));
     render(); root.querySelector(`[data-list="${button.dataset.add}"][data-index="${answers[button.dataset.add].length - 1}"]`)?.focus();
   } else if (button.dataset.remove) {

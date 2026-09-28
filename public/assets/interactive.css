@@ -5,6 +5,12 @@
 .interactive-privacy { margin: 22px 0 0; color: var(--muted); font-size: 1rem; }
 .interactive-workspace { padding-block: 52px 100px; }
 .interactive-noscript { padding: 22px; border: 1px solid var(--line); }
+.iw-sample-tools { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 28px; padding: 18px 20px; border: 1px solid var(--control-line); border-radius: 5px; background: var(--wash); }
+.iw-sample-tools strong { display: block; color: var(--ink); font-size: 1.05rem; }
+.iw-sample-tools p { margin: 3px 0 0; color: var(--muted); }
+.iw-seed-button { min-height: 46px; flex-shrink: 0; padding: 9px 16px; border: 1px solid var(--green); border-radius: 4px; background: var(--paper); color: var(--green); font: inherit; font-weight: 700; cursor: pointer; }
+.iw-seed-button:hover { background: var(--green); color: var(--button-text); }
+.iw-sample-warning { margin: 0 0 27px; padding: 14px 17px; border-left: 4px solid var(--accent); background: var(--wash); color: var(--ink); }
 .iw-layout { display: grid; grid-template-columns: 205px minmax(0, 1fr) 228px; gap: clamp(22px, 3.5vw, 52px); align-items: start; }
 .iw-progress, .iw-guidance { position: sticky; top: 28px; }
 .iw-progress-title { margin: 0 0 14px; font-weight: 700; }
@@ -91,6 +97,7 @@
 #iw-export-status { margin-top: 14px; font-weight: 600; }
 @media (max-width: 1070px) { .iw-layout { grid-template-columns: 170px minmax(0, 1fr); } .iw-guidance { grid-column: 2; position: static; margin-top: 24px; } }
 @media (max-width: 760px) {
+  .iw-sample-tools { align-items: stretch; flex-direction: column; }
   .interactive-intro { padding-block: 56px 32px; }
   .interactive-workspace { padding-block: 34px 75px; }
   .iw-layout { display: block; }

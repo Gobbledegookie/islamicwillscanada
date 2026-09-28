@@ -3,6 +3,7 @@ import articles from './windsor-articles.json' with { type: 'json' };
 import appendix from './windsor-appendix.json' with { type: 'json' };
 
 export const initialAnswers = () => ({
+  sampleData: false,
   testatorName: '', testatorAddress: '', testatorUnit: '', noFamily: false, family: [],
   funeralPrimaryName: '', funeralPrimaryAddress: '', funeralAlternateName: '', funeralAlternateAddress: '',
   executorPrimaryName: '', executorPrimaryAddress: '', executorAlternateName: '', executorAlternateAddress: '',
@@ -68,7 +69,7 @@ export function makeWillBlocks(a) {
   const blocks = [
     { kind: 'title', text: 'Last Will and Testament' },
     { kind: 'subtitle', text: 'Windsor Islamic Association template' },
-    { kind: 'notice', text: 'Completed draft for review. This document has not been signed or witnessed. Review the text, appointments, inheritance appendix and financial details with qualified Islamic and legal advisers before execution.' },
+    { kind: 'notice', text: `${a.sampleData ? 'SAMPLE DATA — FOR TESTING ONLY. All names, addresses and financial details in this draft are fictional. ' : ''}Completed draft for review. This document has not been signed or witnessed. Review the text, appointments, inheritance appendix and financial details with qualified Islamic and legal advisers before execution.` },
     { kind: 'contents', entries: ['Introduction', 'Windsor Islamic Association disclaimer', 'General instructions', 'Articles 1–11', 'Signatures and attestation', 'Appendix A: Islamic inheritance schedules', 'Addendum A: Details of finances'] },
     h('Introduction'),
     p(front.introduction[0]),
