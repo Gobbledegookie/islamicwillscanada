@@ -4,7 +4,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "node src/build.js",
+    "build": "node src/build.js && esbuild src/interactive/app.js --bundle --splitting --minify --format=esm --target=es2020 --outdir=dist/assets/interactive --entry-names=app --chunk-names=chunks/[name]-[hash]",
     "dev": "npm run build && npx wrangler pages dev dist"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "docx": "^9.8.1",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }

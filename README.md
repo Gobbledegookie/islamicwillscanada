@@ -10,13 +10,20 @@ Source repository for [islamicwillcanada.pages.dev](https://islamicwillcanada.pa
 - `public/robots.txt` and generated `sitemap.xml`.
 - `dist/`: generated output; deliberately ignored by Git.
 
-The site uses one generated HTML file per route, so all substantive content is available without JavaScript. The browser script toggles the mobile navigation and powers the round color-mode menu (System by default, with saved Light or Dark overrides). Workshop and seminar videos use lazy-loaded YouTube embeds with direct video links as alternatives. There is no contact form or online will creation form; visitors use the email, document, seminar and group links.
+The main site uses one generated HTML file per route, so its substantive content is available without JavaScript. The browser script toggles the mobile navigation and powers the round color-mode menu (System by default, with saved Light or Dark overrides). Workshop and seminar videos use lazy-loaded YouTube embeds with direct video links as alternatives. There is no contact form; visitors use the email, document, seminar and group links.
+
+## Guided will experiment
+
+`/interactive/` is a standalone experiment based on the Windsor Islamic Association DOCX template. It groups the template's questions into nine sections and generates a filled DOCX or PDF draft in the browser. It does not send answers to a server, create an account, or save progress; closing or reloading the tab discards entered answers. The form asks for the people and details needed to fill the draft but does not calculate inheritance shares or determine legal validity. The exported document still needs full review and signing.
+
+The Windsor template's front matter, articles and inheritance appendix are transcribed into `src/interactive/windsor-*.json`; `model.js` inserts answers into those clauses and adds the finance schedules. `app.js` handles the guided questions and validation. `export.js` renders DOCX with `docx` and PDF with `pdf-lib`. These libraries are loaded only when a visitor downloads a file. The PDF uses a self-hosted Noto Sans font; its [Open Font License](licenses/NotoSans-OFL.txt) is included. See [INTERACTIVE_NOTES.md](INTERACTIVE_NOTES.md) for the template mapping and known review points. The new route is deliberately absent from the main navigation while it is being evaluated.
 
 ## Local development
 
 Install Node.js 20 or later, then:
 
 ```sh
+npm ci
 npm run build
 npx wrangler pages dev dist
 ```

@@ -1,0 +1,475 @@
+[
+  {
+    "type": "p",
+    "text": "Appendix A: Distribution of the Estate in Accordance to Islamic Laws of Inheritance"
+  },
+  {
+    "type": "p",
+    "text": "Schedule 1: One or more son, any number of daughters"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Surviving Heirs",
+        "Share of the Remainder of My Estate"
+      ],
+      [
+        "1a. with no other relatives",
+        "He, or they, get all the remainder such that sons are equal in their class, daughters are equal in their class, and for a daughter half of a son's share."
+      ],
+      [
+        "1b. with wife",
+        "1/8 to wife, the rest as in 1.a"
+      ],
+      [
+        "1c. with husband",
+        "1/4 to husband, the rest as in 1a"
+      ],
+      [
+        "1d. with father and mother",
+        "1/6 to father and 1/6 to mother, the rest as in 1a"
+      ],
+      [
+        "1e. with one parent",
+        "1/6 to parent, the rest as in 1.a"
+      ],
+      [
+        "1f. with any Possible combination of 1b, 1c, 1d, and 1e",
+        "Spouse and parents take shares mentioned above, and the rest as in 1a"
+      ],
+      [
+        "1g. with father of father, no parents, no other grandparents",
+        "1/6 to father of father and the rest as in 1a"
+      ],
+      [
+        "1h. with father of father and mother of father or mother of mother, no parents",
+        "1/6 to father of father, 1/6 to either mother of father or mother of mother, the rest as in 1a"
+      ],
+      [
+        "1i. 1g or 1h) with wife",
+        "1/6 to mother of father or of mother (if she exists); 1/6 to father of father, 1/8 to wife, and father of father, the rest as in 1a"
+      ],
+      [
+        "1j. 1g or 1h with husband",
+        "1/6 to mother of father or of mother (if she exists); I /6 to father of father; 1/4 to husband; the rest as in 1a."
+      ],
+      [
+        "1k. with father of father, and mother, no father",
+        "1/6 to mother, 1/6 to father of father, the rest as in 1a"
+      ],
+      [
+        "1l. 1k with wife",
+        "1/6 to mother, 1/6 to father of father, 1/8 to wife, and the rest as in 1a"
+      ],
+      [
+        "1m. 1k with husband",
+        "1/6 to mother, 1/6 to father of father, 1/8 to wife, and the rest as in 1a"
+      ],
+      [
+        "1n. with father and mother of mother (no mother)",
+        "1/6 to mother of mother, 1/6 to father, and the rest as in 1a"
+      ],
+      [
+        "1o. 1n with wife",
+        "1/6 to father, 1/6 to mother of mother, 1/8 to wife, and the rest as in 1a"
+      ],
+      [
+        "1p. 1n with husband",
+        "1/6 to father, 1/6 to mother of mother, 1/4 to husband, and the rest as in 1a"
+      ],
+      [
+        "1q. with either mother of father or mother of mother, no parents, and no father of father",
+        "1/6 to mother of mother or mother of father, the rest as in 1a"
+      ],
+      [
+        "1r. 1q with wife",
+        "1/6 to mother of mother or mother of father, 1/8 to wife, the rest as in 1a"
+      ],
+      [
+        "1s. 1q with husband",
+        "1/6 to mother of mother or mother of father, 1/4 to husband, the rest as in 1a"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "1t. 1h, 1n, or 1q, but instead of one grandmother, there are two or more, same degree, grandmothers (i.e. mother of mother and mother of father; or mother of mother of mother, mother of mother of father, and mother of father of father, disregard mother of father of mother, and no mother of mother nor mother of father)",
+        "grandmothers share equally 1/6, father or grandfather 1/6, the rest as in 1a"
+      ],
+      [
+        "1u. 1t with husband or wife",
+        "grandmothers share equally 1/6, father or grandfather 1/6, husband 1/4, or wife 1/8, the rest as in 1a"
+      ],
+      [
+        "1v. In each of 1a through 1u, disregard all other relatives not mentioned in the relevant sub cases",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Schedule 2: One or more daughters, no sons"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Surviving Heirs",
+        "Share of the Remainder"
+      ],
+      [
+        "2a. with no other relatives",
+        "If one only, she takes all the remainder. If more than one, they equally share all the remainder."
+      ],
+      [
+        "2b. with wife",
+        "1/8 to wife, the rest as in 2a"
+      ],
+      [
+        "2c. with husband",
+        "1/4 to husband, the rest as in 2a"
+      ],
+      [
+        "2d. with father",
+        "1/2 to the one daughter, 1/2 to father. If more than one, they share 2/3 equally and 1/3 to father"
+      ],
+      [
+        "2e. with mother",
+        "1/4 to mother, 3/4 to daughter. If more than one, they share 4/5 equally and 1/5 to mother"
+      ],
+      [
+        "2f. with both parents",
+        "1/6 to mother, 1/3 to father, 1/2 to daughter. If more than one, 2/3 to daughters equally, 1/6 to mother, and 1/6 to father"
+      ],
+      [
+        "2g. with wife and father",
+        "1/8 to wife, 1/2 to daughter, and 3/8 to father. If more than one, 2/3 to daughters equally, 1 /8 to wife, and 5/24 to father"
+      ],
+      [
+        "2h. with wife and mother",
+        "1/8 to wife, 7/32 to mother, 21/32 to daughter. If more than one, 1/8 to wife, 7/40 to mother, and 7/10 to daughters equally"
+      ],
+      [
+        "2i. with wife and both parents",
+        "1/8 to wife, 1/6 to mother, 5/24 to father, and 1/2 to daughter. If more than one, 3/27 to wife, 4/27 to mother, 4/27 to father, and 16/27 to daughters equally"
+      ],
+      [
+        "2j. with husband and father",
+        "1/4 to husband, 1/4 to father, and 1/2 to daughter. If more than one, 3/13 to husband, 2/13 to father, and 8/13 to daughters equally"
+      ],
+      [
+        "2k. with husband and mother",
+        "1/4 to husband, 7/36 to mother, 5/9 to daughter. If more than one, 3/13 to husband, 2/13 to mother, and 8/13 to daughters equally"
+      ],
+      [
+        "2l. with husband and both parents",
+        "3/13 to husband, 2/13 to father, 2/13 to mother, and 6/13 to daughter. If"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "",
+        "more than one, 3/15 to husband, 2/15 to father, 2/15 to mother, and 8/15 to daughters equally"
+      ],
+      [
+        "2m. with father of father, no father, and no brothers",
+        "1/2 to father of father, 1/2 to daughter. If more than one, 1/3 to father of father and 2/3 to daughters equally"
+      ],
+      [
+        "2n. 2m with wife",
+        "As in 2g, but father of father in place of father"
+      ],
+      [
+        "2o. 2m with husband",
+        "As in 2j, but father of father in place of father"
+      ],
+      [
+        "2p. 2m with mother, or without mother but with either mother of father or mother of mother",
+        "As in 2f, but father of father in place of father and grandmother in place of mother; the two grandmothers divide share of mother equally between themselves"
+      ],
+      [
+        "2q. 2p with wife",
+        "As in 2i, but father of father in place of father and grandmother in place of mother; the two grandmothers divide the share of mother equally between themselves"
+      ],
+      [
+        "2r. 2p with husband",
+        "As in 2l but father of father in place of father and grandmother in place of mother; the two grandmothers divide the share of mother equally between themselves"
+      ],
+      [
+        "2s. 2p, 2q, 2r but in place of mother, both mother of mother, mother of father; or mother of mother of mother, mother of mother father and mother of father of father; disregard mother of father of mother",
+        "The two grandmothers (or the three great grandmothers) share equally what is assigned to the mother or one grandmother in cases 2p, 2q, and 2r; the rest as in 2p, 2q, and 2r respectively"
+      ],
+      [
+        "2t. with son of son",
+        "1/2 to daughter, 1/2 to son of son. If more than one, 2/3 to daughters equally and 1/3 to son of son"
+      ],
+      [
+        "2u. with more than one son of son(s) and any number of daughters of son(s)",
+        "As in 2t, but the share of son of son is divided among son of son(s) and daughters of son(s) according to rules stated in 1a"
+      ],
+      [
+        "2v. 2t or 2u with wife or husband",
+        "1/2 to daughter, 1/8 to wife, or 1/4 to husband, the rest to children of son(s) as in 2.t or 2u. If more than one daughter, 2/3 to daughters equally, 1/4 to husband or 1/8 to wife, the rest to children of son(s) as in 2t or 2u"
+      ],
+      [
+        "2w. 2v with both parents",
+        "1/2 to daughter, 1/8 to wife, 1/6 to mother, and 1/24 to grandchildren as in 2t and 2u. 6/13 to daughter, 3/13, 2/13 to father, 2/13 to mother, nothing to grandchildren. If more than one daughter, 16/27 to daughters equally, 3/27 to wife, 4/27 to mother, 4/27 to mother, 4/27 to mother, nothing to grandchildren, 8/15 to daughters, 3/15 to husband and 2/15 to mother, 2/15 to father, nothing to grandchildren"
+      ],
+      [
+        "2x. 2v with one parent",
+        "1/2 to daughter, 1/8 to wife, 1/6 to parent, and 5/24 to children of son(s) as in 2t and 2u; or, 1/2 to daughter, 1/4 to husband, 1/6 to parent, and 4/12 to children of son(s) as in 2tand 2u. If more than one daughter, 2/3 to daughters, 1/8 to wife, 1/6 to parent and 1/24 to children of son(s) as in 2t and 2u; or, 8/13 to daughters, 2/13 to parent and 3/13 to husband, nothing to grandchildren"
+      ],
+      [
+        "2y. 2v with father of father, no father and no brothers,",
+        "As in (2.w), but replace father of father for father and grandmother(s) for"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "and mother; or with father of father, no father and no brother(s) and grandmother(s) on either side, and no mother",
+        "mother. Share of grandmothers is divided equally between them"
+      ],
+      [
+        "2z. with daughters of son(s) and no sons of sons",
+        "3/4 to the daughter and 1/4 to daughter(s) of son(s), equally between them. If more than one daughter; all to daughters, nothing to daughter(s) of son(s)"
+      ],
+      [
+        "2aa. with sister(s) of same parents (no brothers), or with brother(s) of the same two parents (no sisters)",
+        "1/2 to the daughter, 1/2 to sister (or brother), or equally among all sisters (or brothers). If more than one daughter; 2/3 to daughters, 1/3 to sister (or brother) or equally among sisters (or brothers)"
+      ],
+      [
+        "2bb. with sister(s) and brother(s) of the same two parents",
+        "1/2 to daughter, 1/2 to sister(s) and brother(s) on the basis of one share to female and two shares to male. If more than one daughter, 2/3 to daughters, 4/3 to sister(s) and brother(s) on same basis"
+      ],
+      [
+        "2cc. 2aa or 2bb with wife or husband",
+        "1/2 to daughter, 1/8 to wife and 3/8 to sister(s) and/or brother(s) as in 2aa) and 2bb. 1/2 to daughter, 1/4 to husband1 1/4 to sister(s) and/or brother(s) as in (2.aa) or (2.bb) respectively. If more than one daughter, 2/3 to daughters, 1/4 to husband, or 1/8 to wife, the rest to sister(s) and/or brother(s) as in (2.aa) or (2.bb) respectively"
+      ],
+      [
+        "2dd. with uncle(s) from same parents as father",
+        "1/2 to daughter and the rest to uncle, or uncles equally between them. If more than one daughter, 2/3 to daughters and the rest to uncle or uncles equally between them"
+      ],
+      [
+        "2ee. with one grandmother, either side, or both grandmothers",
+        "5/6 to daughter and 1/6 to grandmother or grandmother51 equally between them. If more than one daughter, 5/6 to daughters and 1/6 to grandmothers"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Schedule 3: Grandchildren, no son(s), no daughter(s)"
+  },
+  {
+    "type": "p",
+    "text": "Apply Case No.1 and Case No. 2 after substituting daughter(s) of son(s) for daughter(s) and Son(s) of Son(s) for son(s)."
+  },
+  {
+    "type": "p",
+    "text": "Schedule 4: Parents, no children"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Surviving Heirs",
+        "Share of the Remainder"
+      ],
+      [
+        "4a. father alone; or father and brother(s) and/or sister(s)",
+        "all the remainder to father alone, nothing to brother(s) and sister(s)"
+      ],
+      [
+        "4b. father and wife or husband",
+        "1/4 to wife, or 1/2 to husband, and the rest to father"
+      ],
+      [
+        "4c. father and mother, no brothers, no sisters",
+        "1/3 mother, the rest father"
+      ],
+      [
+        "4d. 4c with husband or wife",
+        "1/2 to husband, 1/6 to mother, the rest to father"
+      ],
+      [
+        "4e. both parents, with brother(s) and/or sister(s) and with wife or husband",
+        "1/6 to mother, nothing to brother(s) and sister(s), the rest to father. 1/6 to mother, nothing to brother(s) and sister(s), 1/4 to wife, or 1/2 to husband; the rest to father"
+      ],
+      [
+        "4f. mother only",
+        "she takes all the remainder"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "4g. mother and husband or wife",
+        "1/4 to wife, or 1/2 to husband, and the rest to mother"
+      ],
+      [
+        "4h. mother with one brother or one sister of the same two parents or on father's side",
+        "1/3 to mother, rest to brother. 2/5 to mother, the rest to sister"
+      ],
+      [
+        "4i. 4h with husband or wife",
+        "1/3 to mother, 1/2 to husband or 1/4 to wife, the rest to brother. 4/13 to mother. 3/13 to wife, and 6/13 to sister. 2/8 to mother, 3/8 to husband, and 3/8 to sister"
+      ],
+      [
+        "4j. mother with at least two brothers, brother(s) and sister(s) all of same two parents or on father's side",
+        "1/6 to mother, the rest to brothers or brother(s) and sister(s) according to rules in 1a"
+      ],
+      [
+        "4k. 4j with husband or wife",
+        "1/6 to mother, 1/4 to wife, or 1/2 to husband, the rest to brothers or brother(s) and sister(s) as in rules 1a"
+      ],
+      [
+        "4l. mother with two sisters or more, of the same two parents or on father's side",
+        "1/5 to mother, 4/5 to sisters equally between them"
+      ],
+      [
+        "4m. 4l with husband or wife",
+        "3/13 to wife, 2/13 to mother, 8/13 to sisters equally between them. 3/7 to husband, 1/7 to mother, 3/7 to sisters equally between them"
+      ],
+      [
+        "4n. mother with one brother on mother's side or one sister on mother's side",
+        "2/3 to mother, 1/3 to brother or sister"
+      ],
+      [
+        "4o. 4n with husband or wife",
+        "1/4 to wife, 1/2 to mother, 1/4 to brother or sister 1/2 to husband, 1/3 to mother, 1/6 to brother or sister"
+      ],
+      [
+        "4p. mother with more than one brother and/or sister on mother's side",
+        "1/3 to mother, 2/3 to brother(s) and sister(s), equally between them all"
+      ],
+      [
+        "4q. 4p with husband or wife",
+        "1/4 to wife, 1/4to mother, 1/2 to brother(s) and sister(s) equally between them all"
+      ],
+      [
+        "4r. mother with father of father, no brother(s), no sister(s)",
+        "1/2 to husband, 1/6 to mother, 1/3 to brother(s) and sister(s) equally between them all"
+      ],
+      [
+        "4s. 4r. with husband or wife",
+        "4/3 to mother, the rest to father of father"
+      ],
+      [
+        "4t. mother with son of brother, (the brother is of the same parents)",
+        "1/3 to mother, 1/4 to wife orl/2 to husband, the rest to grandfather"
+      ],
+      [
+        "4u. mother with children of brother(s), (the brother is of the same parents)",
+        "1/3 to mother, the rest to son of brother"
+      ],
+      [
+        "4v. 4t or 4u with wife or husband",
+        "1/3 to mother, 1/4 to wife, or 1/2 to husband and the rest to son or children of brother(s) as in 4t or 4u"
+      ],
+      [
+        "4w. mother with brother of father",
+        "I /3 to mother, the rest to brother of father the same two parents"
+      ],
+      [
+        "4x mother with brother(s) of father and any number of",
+        "1/3 to mother, the rest to children of brother(s) according to rules in 1a"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "sisters of father, all of the same two parents",
+        ""
+      ],
+      [
+        "4y. 4w and 4x with wife or husband",
+        "1/3 to mother, 1/4 to wife, or 1/2 to husband, the rest to brother of father or brother(s) and sister(s) of fathers as in 4x"
+      ],
+      [
+        "4z father with mother of mother and of father",
+        "1/6 to mother of mother, the rest to father no mother"
+      ],
+      [
+        "4aa. mother with brother(s) and father of father",
+        "1/6 to mother, the rest among brother(s) and father of father equally, unless grandfather's share goes below 1/3 (if it does, he gets 1/3 and the rest to brothers equally)"
+      ],
+      [
+        "4bb. mother with father of father and brother(s) and any number of sister(s), all of the same two parents or on father's side",
+        "as in (4.aa) and apply rules of (1.a) for brother(s) and sister(s)"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Schedule 5: HUSBAND OR WIFE, NO OFFSPRING, NO PARENTS, AND NO FATHER OF FATHER"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Surviving Heirs",
+        "Share of the Remainder"
+      ],
+      [
+        "5a. wife only",
+        "1/4 to wife, the rest to"
+      ],
+      [
+        "5b. husband only",
+        "1/2 to husband, the rest as in 5a"
+      ],
+      [
+        "5c. husband and wife, with one brother or more and any number of sisters",
+        "1/2 to husband, or 1/4 to wife, the rest to brother(s) and sister(s) according to rules in 1a"
+      ],
+      [
+        "5.d. husband or wife, with sister(s), no brothers",
+        "1/2 to husband or 1/4 to wife, the rest to the sister or equally between sisters"
+      ],
+      [
+        "5e. husband or wife, with son or sons of brother(s), or son(s) and any number of daughters of brother(s)",
+        "As in 5c but niece(s) and nephew(s) replace sister(s) and brother(s)"
+      ],
+      [
+        "5f. husband or wife! with brother(s) of father",
+        "1/2 to husband or 1/4 to wife and the rest to uncle or uncles equally between them"
+      ],
+      [
+        "5g. husband, or wife, with one brother of father or more, and any number of sisters of father",
+        "1/2 to husband or 1/4 to wife, rest to uncle(s) and aunt(s) according to the rules in 4a"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Note: “If Testator's Case Is Under No. 1-5, But Not Found Above, the Executor Must Follow the"
+  },
+  {
+    "type": "p",
+    "text": "Advice of the Windsor Islamic Association."
+  },
+  {
+    "type": "p",
+    "text": "Schedule 6: All other cases"
+  },
+  {
+    "type": "p",
+    "text": "Relatives not mentioned in cases (1) through (5) must be disregarded. However, I direct and ordain that all cases not specifically mentioned in this schedule shall be referred to the Windsor Islamic Association. Further, for any interpretation of any of the"
+  },
+  {
+    "type": "p",
+    "text": "above cases or articles and provisions of the will, I ordain that the executor shall refer to Windsor Islamic Association."
+  }
+]
