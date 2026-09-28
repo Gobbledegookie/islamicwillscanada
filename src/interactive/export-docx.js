@@ -90,9 +90,20 @@ export async function makeDocx(answers, assets = {}) {
     new TextRun({ text: ' of ', font: 'Aptos', size: 16, color: mutedHex }),
     new TextRun({ children: [PageNumber.TOTAL_PAGES], font: 'Aptos', size: 16, color: mutedHex })
   ] })] });
-  const footer = new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [
-    new TextRun({ text: 'Testator __________          Witness 1 __________          Witness 2 __________', font: 'Aptos', size: 17, color: inkHex })
-  ] })] });
+  const footerRule = { style: BorderStyle.SINGLE, color: inkHex, size: 6 };
+  const noRule = { style: BorderStyle.NONE };
+  const footer = new Footer({ children: [new Table({
+    width: { size: 10140, type: WidthType.DXA },
+    columnWidths: [3380, 3380, 3380],
+    borders: { top: noRule, bottom: footerRule, left: noRule, right: noRule, insideHorizontal: noRule, insideVertical: noRule },
+    rows: [new TableRow({ children: ['Testator:', 'Witness 1:', 'Witness 2:'].map(label => new TableCell({
+      width: { size: 3380, type: WidthType.DXA },
+      margins: { top: 0, bottom: 125, left: 0, right: 0 },
+      children: [new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 0, after: 0 }, children: [
+        new TextRun({ text: label, font: 'Aptos', size: 19, italic: true, color: inkHex })
+      ] })]
+    })) })]
+  })] });
   const doc = new Document({
     creator: 'Islamic Will Canada', title: 'Last Will and Testament - Windsor Draft',
     description: 'Guided draft based on the Windsor Islamic Association template',
