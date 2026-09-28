@@ -99,7 +99,7 @@ export async function makeDocx(answers, assets = {}) {
     rows: [new TableRow({ children: ['Testator:', 'Witness 1:', 'Witness 2:'].map(label => new TableCell({
       width: { size: 3380, type: WidthType.DXA },
       margins: { top: 0, bottom: 125, left: 0, right: 0 },
-      children: [new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 0, after: 0 }, children: [
+      children: [new Paragraph({ alignment: AlignmentType.LEFT, spacing: { before: 0, after: 0 }, children: [
         new TextRun({ text: label, font: 'Aptos', size: 19, italic: true, color: inkHex })
       ] })]
     })) })]
