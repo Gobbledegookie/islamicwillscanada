@@ -192,12 +192,18 @@ async function download(format) {
   status.textContent = `Preparing your ${format.toUpperCase()} draft…`;
   try {
     const { makeDocx, makePdf } = await import('./export.js');
+    const imageNames = ['windsor-bismillah.png', 'windsor-verse-1.png', 'windsor-verse-2.png'];
+    const fetchBytes = async name => {
+      const response = await fetch(`/assets/${name}`);
+      if (!response.ok) throw new Error(`Document asset could not be loaded: ${name}`);
+      return new Uint8Array(await response.arrayBuffer());
+    };
+    const images = Object.fromEntries(await Promise.all(imageNames.map(async name => [name, await fetchBytes(name)])));
     let blob;
-    if (format === 'docx') blob = await makeDocx(answers);
+    if (format === 'docx') blob = await makeDocx(answers, images);
     else {
-      const response = await fetch('/assets/NotoSans.ttf');
-      if (!response.ok) throw new Error('The PDF font could not be loaded.');
-      blob = await makePdf(answers, await response.arrayBuffer());
+      const [regular, bold] = await Promise.all([fetchBytes('NotoSans.ttf'), fetchBytes('NotoSans-Bold.ttf')]);
+      blob = await makePdf(answers, regular, bold, images);
     }
     const file = `Islamic-Will-Draft-${answers.testatorName.trim().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'Will'}.${format}`;
     const url = URL.createObjectURL(blob);

@@ -18,6 +18,8 @@ The `/interactive/` route is an experimental drafting interface. It does not cer
 
 The source document's long inheritance appendix is retained as reference text. The tool does **not** calculate shares, verify the one-third gift limit, or reconcile an estate. Empty optional fields are marked “Not supplied in this draft.” It requires names and addresses for appointments and witnesses to avoid a deceptively finished document. These are *draft-generation checks*, not a determination of legal requirements.
 
+The DOCX and PDF exports share the same content blocks and use a consistent print layout. Both include a contents page, distinct article and schedule headings, the Windsor Arabic artwork, bordered inheritance and finance tables, highlighted entered details, page numbers, and signing space. Continuations of the original inheritance tables are joined before layout so headers repeat cleanly across pages. The filled sample's yellow editing notes are deliberately excluded from the generated draft.
+
 ## Items requiring human review
 
 - The Windsor document contains apparent inconsistent article references in its allocation and distribution clauses. The original wording is retained; a qualified reviewer should resolve them before use.
