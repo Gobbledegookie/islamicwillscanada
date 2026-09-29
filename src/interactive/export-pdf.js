@@ -158,8 +158,12 @@ export async function makePdf(answers, regularBytes, boldBytes, assets = {}) {
     const number = `Page ${index + 1} of ${pages.length}`;
     target.drawText(number, { x: pageWidth - right - regular.widthOfTextAtSize(number, 8.5), y: pageHeight - 37, size: 8.5, font: regular, color: muted });
     target.drawLine({ start: { x: left, y: pageHeight - 45 }, end: { x: pageWidth - right, y: pageHeight - 45 }, thickness: .5, color: rule });
-    target.drawLine({ start: { x: left, y: 57 }, end: { x: pageWidth - right, y: 57 }, thickness: .5, color: rule });
-    target.drawText('Testator __________     Witness 1 __________     Witness 2 __________', { x: left, y: 39, size: 8.3, font: regular, color: ink });
+    const footerLabels = ['Testator:', 'Witness 1:', 'Witness 2:'];
+    const footerColumnWidth = contentWidth / footerLabels.length;
+    footerLabels.forEach((label, column) => {
+      target.drawText(label, { x: left + column * footerColumnWidth, y: 43, size: 9.5, font: regular, color: ink });
+    });
+    target.drawLine({ start: { x: left, y: 31 }, end: { x: pageWidth - right, y: 31 }, thickness: .6, color: ink });
   });
   return new Blob([await pdf.save()], { type: 'application/pdf' });
 }
