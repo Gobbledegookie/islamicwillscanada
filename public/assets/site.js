@@ -1,6 +1,36 @@
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.primary-nav');
 const themeControl = document.querySelector('.theme-control');
+const homeStart = document.querySelector('#start-will');
+if (homeStart) {
+  const nameInput = homeStart.querySelector('#home-full-name');
+  const error = homeStart.querySelector('#home-name-error');
+  nameInput.addEventListener('input', () => {
+    nameInput.removeAttribute('aria-invalid');
+    error.hidden = true;
+    error.textContent = '';
+  });
+  homeStart.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = nameInput.value.trim().replace(/\s+/g, ' ');
+    if (!name) {
+      error.textContent = 'Please enter your full name to start your will draft.';
+      error.hidden = false;
+      nameInput.setAttribute('aria-invalid', 'true');
+      nameInput.focus();
+      return;
+    }
+    try {
+      sessionStorage.setItem('iwc-pending-testator-name', name);
+    } catch {
+      error.textContent = 'Your browser could not carry your name to the form. Please allow session storage and try again.';
+      error.hidden = false;
+      nameInput.focus();
+      return;
+    }
+    location.assign('/interactive/');
+  });
+}
 if (themeControl) {
   const savedTheme = document.documentElement.dataset.theme;
   const selectedTheme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'system';

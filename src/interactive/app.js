@@ -5,6 +5,11 @@ import { matchingAddresses } from './address-search.js';
 
 const root = document.getElementById('interactive-root');
 const answers = initialAnswers();
+try {
+  const pendingName = sessionStorage.getItem('iwc-pending-testator-name');
+  sessionStorage.removeItem('iwc-pending-testator-name');
+  if (pendingName) answers.testatorName = pendingName;
+} catch {}
 let current = 0;
 let furthest = 0;
 let addressTimer;
