@@ -262,7 +262,9 @@ async function download(format) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a'); link.href = url; link.download = file; document.body.append(link); link.click(); link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 60000);
-    status.textContent = `${format.toUpperCase()} draft downloaded. Review and sign it before use.`;
+    status.textContent = answers.sampleData
+      ? `Sample ${format.toUpperCase()} downloaded. This example is for preview only; do not sign or use it.`
+      : `${format.toUpperCase()} draft downloaded. Review and sign it before use.`;
   } catch (error) {
     console.error('Document export failed', error);
     status.textContent = 'The document could not be prepared. Please try again, or use the original template.';
