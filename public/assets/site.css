@@ -179,6 +179,8 @@ h3 { font-size: 1.25rem; }
 .home-start .button { cursor: pointer; }
 .home-start-error { margin: 8px 0 0; color: var(--ink); font-weight: 600; }
 .home-start-error[hidden] { display: none; }
+.home-start-privacy { max-width: 600px; margin: 12px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.home-start-privacy a { font-weight: 600; }
 .home-secondary-action { margin-top: 14px; }
 .hero-aside { padding: 8px 0 2px 28px; border-left: 1px solid var(--hero-line); }
 .hero-aside h2 { margin-bottom: 18px; font: 700 1rem/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; letter-spacing: 0; }
