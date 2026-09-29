@@ -2,7 +2,12 @@
 .interactive-intro h1 { max-width: 850px; margin-bottom: 18px; font-size: clamp(2.5rem, 5vw, 4.25rem); }
 .interactive-intro .lead { max-width: 790px; margin-bottom: 18px; }
 .interactive-intro-links { display: flex; flex-wrap: wrap; gap: 8px; font-weight: 600; }
-.interactive-privacy { margin: 22px 0 0; color: var(--muted); font-size: 1rem; }
+.interactive-privacy { max-width: 900px; margin: 32px 0 0; padding: 22px 25px; border-left: 3px solid var(--green); background: var(--wash); }
+.interactive-privacy h2 { margin: 0 0 11px; font-size: 1.25rem; }
+.interactive-privacy p { margin: 0; color: var(--muted); font-size: 1rem; }
+.interactive-privacy p + p { margin-top: 12px; }
+.interactive-privacy strong { color: var(--ink); }
+.interactive-privacy a { color: var(--green); }
 .interactive-workspace { padding-block: 52px 100px; }
 .interactive-noscript { padding: 22px; border: 1px solid var(--line); }
 .iw-sample-tools { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 28px; padding: 18px 20px; border: 1px solid var(--control-line); border-radius: 5px; background: var(--wash); }
@@ -97,6 +102,7 @@
 #iw-export-status { margin-top: 14px; font-weight: 600; }
 @media (max-width: 1070px) { .iw-layout { grid-template-columns: 170px minmax(0, 1fr); } .iw-guidance { grid-column: 2; position: static; margin-top: 24px; } }
 @media (max-width: 760px) {
+  .interactive-privacy { padding: 18px; }
   .iw-sample-tools { align-items: stretch; flex-direction: column; }
   .interactive-intro { padding-block: 56px 32px; }
   .interactive-workspace { padding-block: 34px 75px; }

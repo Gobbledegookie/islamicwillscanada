@@ -1,6 +1,6 @@
 # Guided Windsor will experiment
 
-The `/interactive/` route is an experimental drafting interface. It does not certify that a will is complete or valid. It does not save or transmit answers. Both download formats are assembled in the visitor's browser from the same structured document blocks.
+The `/interactive/` route is an experimental drafting interface. It does not certify that a will is complete or valid. It does not submit or store will answers on Islamic Will Canada servers. Article 1 address text is sent directly from the visitor's browser to Komoot's public Photon service for suggestions; no other form answers are attached. Komoot has stated that Photon keeps request logs for a limited time. Both download formats are assembled in the visitor's browser from the same structured document blocks.
 
 ## Windsor template coverage
 
