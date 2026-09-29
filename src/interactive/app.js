@@ -1,6 +1,7 @@
 import { initialAnswers, repeatFields } from './model.js';
 import { makeSampleAnswers } from './sample.js';
 import { createSavedAnswers, maxSavedFileBytes, parseSavedAnswers } from './saved-answers.js';
+import { matchingAddresses } from './address-search.js';
 
 const root = document.getElementById('interactive-root');
 const answers = initialAnswers();
@@ -10,6 +11,7 @@ let addressTimer;
 let addressController;
 let addressResults = [];
 let activeAddress = -1;
+let activeAddressInput;
 let saveStatus = '';
 
 const steps = [
@@ -26,10 +28,11 @@ const steps = [
 
 function esc(value) { return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;'); }
 function field(key, label, { required = false, type = 'text', help = '', placeholder = '' } = {}) {
-  const isAddress = key === 'testatorAddress';
-  const addressAttrs = isAddress ? ' role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="iw-address-options"' : '';
-  const addressHelp = isAddress ? '<p class="iw-address-note">Start typing to see Canadian address suggestions. You can edit the address even if you do not select a suggestion. Add an apartment or unit number in the next field.</p><p class="iw-address-privacy">Typing your address sends its text directly to <a href="https://github.com/komoot/photon" target="_blank" rel="noopener noreferrer">Photon (Komoot)</a> for suggestions. No name or other will answer is attached; your IP address may be visible, and Photon may temporarily log requests. <a href="#privacy-details">Read how answers are handled</a>. Address data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.</p><p id="iw-address-status" class="iw-address-status" role="status" aria-live="polite"></p><ul id="iw-address-options" class="iw-address-options" role="listbox" aria-label="Suggested Canadian addresses" hidden></ul>' : '';
-  return `<div class="iw-field${isAddress ? ' iw-address-field' : ''}"><label for="iw-${key}">${label}${required ? '<span class="iw-required">Required</span>' : ''}</label>${help ? `<details class="iw-help"><summary>Why we ask</summary><p>${help}</p></details>` : ''}<input id="iw-${key}" data-key="${key}" type="${type}" value="${esc(answers[key])}" placeholder="${esc(placeholder)}" autocomplete="off" ${required ? 'required' : ''}${addressAttrs}>${addressHelp}</div>`;
+  const isAddress = key.endsWith('Address');
+  const addressAttrs = isAddress ? ` data-address role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="iw-${key}-options" aria-describedby="iw-${key}-status"` : '';
+  const input = `<input id="iw-${key}" data-key="${key}" type="${type}" value="${esc(answers[key])}" placeholder="${esc(placeholder)}" autocomplete="off" ${required ? 'required' : ''}${addressAttrs}>`;
+  const control = isAddress ? `<div class="iw-address-control">${input}<ul id="iw-${key}-options" class="iw-address-options" role="listbox" aria-label="Suggested Canadian addresses" hidden></ul></div><p id="iw-${key}-status" class="iw-address-status" role="status" aria-live="polite"></p>` : input;
+  return `<div class="iw-field${isAddress ? ' iw-address-field' : ''}"><label for="iw-${key}">${label}${required ? '<span class="iw-required">Required</span>' : ''}</label>${help ? `<details class="iw-help"><summary>Why we ask</summary><p>${help}</p></details>` : ''}${control}</div>`;
 }
 function textarea(key, label, help = '') { return `<div class="iw-field"><label for="iw-${key}">${label}</label>${help ? `<details class="iw-help"><summary>Why we ask</summary><p>${help}</p></details>` : ''}<textarea id="iw-${key}" data-key="${key}" rows="5">${esc(answers[key])}</textarea></div>`; }
 function repeater(key, title, labels, { note = '', requiredFields = [] } = {}) {
@@ -68,29 +71,30 @@ function stopAddressLookup() {
   addressController = undefined;
   addressResults = [];
   activeAddress = -1;
+  if (activeAddressInput?.isConnected) showAddressOptions();
+  activeAddressInput = undefined;
 }
 
 function showAddressOptions() {
-  const input = root.querySelector('#iw-testatorAddress');
-  const list = root.querySelector('#iw-address-options');
+  const input = activeAddressInput;
+  const list = input?.parentElement.querySelector('.iw-address-options');
   if (!input || !list) return;
-  list.innerHTML = addressResults.map((address, index) => `<li id="iw-address-option-${index}" role="option" aria-selected="${index === activeAddress}" data-address-index="${index}">${esc(address)}</li>`).join('');
+  list.innerHTML = addressResults.map((address, index) => `<li id="${input.id}-option-${index}" role="option" aria-selected="${index === activeAddress}" data-address-index="${index}">${esc(address)}</li>`).join('');
   list.hidden = !addressResults.length;
   input.setAttribute('aria-expanded', String(Boolean(addressResults.length)));
   if (activeAddress < 0) input.removeAttribute('aria-activedescendant');
-  else input.setAttribute('aria-activedescendant', `iw-address-option-${activeAddress}`);
+  else input.setAttribute('aria-activedescendant', `${input.id}-option-${activeAddress}`);
   list.querySelector('[aria-selected="true"]')?.scrollIntoView({ block: 'nearest' });
 }
 
 function selectAddress(index) {
   const address = addressResults[index];
-  const input = root.querySelector('#iw-testatorAddress');
+  const input = activeAddressInput;
   if (!address || !input) return;
   stopAddressLookup();
   input.value = address;
-  answers.testatorAddress = address;
-  showAddressOptions();
-  root.querySelector('#iw-address-status').textContent = 'Address selected. Check it, then add a unit number in the next field if needed.';
+  answers[input.dataset.key] = address;
+  input.closest('.iw-address-field').querySelector('.iw-address-status').textContent = 'Address selected. Check it before continuing.';
   input.focus();
 }
 
@@ -98,25 +102,19 @@ async function lookupAddress(query, input) {
   addressController?.abort();
   const controller = new AbortController();
   addressController = controller;
-  const status = root.querySelector('#iw-address-status');
+  const status = input.closest('.iw-address-field').querySelector('.iw-address-status');
   if (status) status.textContent = 'Searching Canadian addresses…';
   try {
     const url = new URL('https://photon.komoot.io/api/');
-    url.search = new URLSearchParams({ q: query, countrycode: 'CA', lang: 'en', limit: '6' });
+    url.search = new URLSearchParams({ q: query, countrycode: 'CA', lang: 'en', limit: '20' });
     const response = await fetch(url, { signal: controller.signal });
     if (!response.ok) throw new Error(`Address lookup returned ${response.status}`);
     const data = await response.json();
-    if (controller.signal.aborted || !root.contains(input) || input.value.trim() !== query) return;
-    addressResults = [...new Set((data.features || []).filter(feature => {
-      const p = feature.properties || {};
-      return p.countrycode?.toUpperCase() === 'CA' && p.housenumber && p.street;
-    }).map(feature => {
-      const p = feature.properties;
-      return [`${p.housenumber} ${p.street}`, p.city || p.locality || p.county, [p.state, p.postcode].filter(Boolean).join(' '), 'Canada'].filter(Boolean).join(', ');
-    }))].slice(0, 6);
+    if (controller.signal.aborted || !root.contains(input) || input !== activeAddressInput || input.value.trim() !== query) return;
+    addressResults = matchingAddresses(data.features, query);
     activeAddress = -1;
     showAddressOptions();
-    status.textContent = addressResults.length ? `${addressResults.length} address suggestions available. Use the arrow keys to choose one.` : 'No matching street address found. Please enter your address manually.';
+    status.textContent = addressResults.length ? `${addressResults.length} matching address suggestions. Use the arrow keys to choose one.` : 'No close match found. You can enter the address manually.';
   } catch (error) {
     if (error.name === 'AbortError') return;
     addressResults = [];
@@ -127,9 +125,9 @@ async function lookupAddress(query, input) {
 
 function scheduleAddressLookup(input) {
   stopAddressLookup();
-  showAddressOptions();
+  activeAddressInput = input;
   const query = input.value.trim();
-  const status = root.querySelector('#iw-address-status');
+  const status = input.closest('.iw-address-field').querySelector('.iw-address-status');
   if (query.length < 5) { if (status) status.textContent = ''; return; }
   addressTimer = setTimeout(() => lookupAddress(query, input), 400);
 }
@@ -179,7 +177,7 @@ async function loadAnswers(file) {
 function capture(event) {
   const el = event.target;
   if (el.dataset.key) answers[el.dataset.key] = el.type === 'checkbox' ? el.checked : el.value;
-  if (el.dataset.key === 'testatorAddress' && event.type === 'input') scheduleAddressLookup(el);
+  if (el.hasAttribute('data-address') && event.type === 'input') scheduleAddressLookup(el);
   if (el.dataset.list) answers[el.dataset.list][Number(el.dataset.index)][el.dataset.prop] = el.value;
   if (el.dataset.obligation) answers.obligations[el.dataset.obligation] = el.value;
   if ((el.dataset.key === 'hasMinorChildren' || el.dataset.key === 'noFamily') && event.type === 'change') render();
@@ -264,7 +262,7 @@ root.addEventListener('change', event => {
 });
 root.addEventListener('submit', event => event.preventDefault());
 root.addEventListener('keydown', event => {
-  if (event.target.id !== 'iw-testatorAddress' || !addressResults.length) return;
+  if (!event.target.hasAttribute('data-address') || event.target !== activeAddressInput || !addressResults.length) return;
   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
     event.preventDefault();
     activeAddress = event.key === 'ArrowDown' ? Math.min(activeAddress + 1, addressResults.length - 1) : Math.max(activeAddress - 1, 0);
@@ -274,13 +272,11 @@ root.addEventListener('keydown', event => {
     selectAddress(activeAddress);
   } else if (event.key === 'Escape') {
     stopAddressLookup();
-    showAddressOptions();
   }
 });
 root.addEventListener('focusout', event => {
-  if (event.target.id === 'iw-testatorAddress') {
+  if (event.target === activeAddressInput) {
     stopAddressLookup();
-    showAddressOptions();
   }
 });
 root.addEventListener('pointerdown', event => {
