@@ -168,7 +168,7 @@ h3 { font-size: 1.25rem; }
 
 /* Home */
 .home-hero { background: var(--wash); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(230px, .7fr); gap: clamp(35px, 6vw, 100px); align-items: end; padding-block: clamp(72px, 9vw, 126px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(230px, .7fr); gap: clamp(35px, 6vw, 100px); align-items: end; padding-block: clamp(54px, 6vw, 82px); }
 .hero-grid h1 { max-width: 730px; margin-bottom: 24px; }
 .hero-grid .lead { max-width: 650px; margin-bottom: 0; }
 .home-start { max-width: 650px; margin-top: 30px; }
