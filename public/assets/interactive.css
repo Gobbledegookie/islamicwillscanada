@@ -10,6 +10,15 @@
 .interactive-privacy a { color: var(--green); }
 .interactive-workspace { padding-block: 52px 100px; }
 .interactive-noscript { padding: 22px; border: 1px solid var(--line); }
+.iw-save-tools { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 30px; margin-bottom: 28px; padding: 24px 27px; border: 1px solid var(--control-line); border-radius: 5px; background: var(--paper); }
+.iw-save-tools h2 { margin: 0 0 7px; font-size: 1.3rem; }
+.iw-save-tools p { max-width: 690px; margin: 0; color: var(--muted); }
+.iw-save-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.iw-save-actions button { min-height: 46px; padding: 9px 14px; border: 1px solid var(--green); border-radius: 4px; background: var(--paper); color: var(--green); font: inherit; font-weight: 700; cursor: pointer; }
+.iw-save-actions .iw-save-button, .iw-save-actions button:hover { background: var(--green); color: var(--button-text); }
+.iw-save-actions .iw-save-button:hover { background: var(--ink); border-color: var(--ink); }
+.iw-save-status { grid-column: 1 / -1; font-weight: 600; }
+.iw-save-status:empty { display: none; }
 .iw-sample-tools { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-bottom: 28px; padding: 18px 20px; border: 1px solid var(--control-line); border-radius: 5px; background: var(--wash); }
 .iw-sample-tools strong { display: block; color: var(--ink); font-size: 1.05rem; }
 .iw-sample-tools p { margin: 3px 0 0; color: var(--muted); }
@@ -101,6 +110,7 @@
 .iw-downloads button:disabled { cursor: wait; opacity: .65; }
 #iw-export-status { margin-top: 14px; font-weight: 600; }
 @media (max-width: 1070px) { .iw-layout { grid-template-columns: 170px minmax(0, 1fr); } .iw-guidance { grid-column: 2; position: static; margin-top: 24px; } }
+@media (max-width: 900px) { .iw-save-tools { grid-template-columns: 1fr; } }
 @media (max-width: 760px) {
   .interactive-privacy { padding: 18px; }
   .iw-sample-tools { align-items: stretch; flex-direction: column; }
@@ -112,6 +122,8 @@
   .iw-guidance { margin-top: 40px; }
 }
 @media (max-width: 480px) {
+  .iw-save-tools { padding: 20px; }
+  .iw-save-actions { display: grid; }
   .interactive-intro h1 { font-size: 2.55rem; }
   .iw-review dl > div { grid-template-columns: 1fr; gap: 3px; }
   .iw-downloads { display: grid; }

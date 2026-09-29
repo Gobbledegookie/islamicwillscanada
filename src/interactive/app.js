@@ -1,5 +1,6 @@
 import { initialAnswers, repeatFields } from './model.js';
 import { makeSampleAnswers } from './sample.js';
+import { createSavedAnswers, maxSavedFileBytes, parseSavedAnswers } from './saved-answers.js';
 
 const root = document.getElementById('interactive-root');
 const answers = initialAnswers();
@@ -9,6 +10,7 @@ let addressTimer;
 let addressController;
 let addressResults = [];
 let activeAddress = -1;
+let saveStatus = '';
 
 const steps = [
   { label: 'You and family', title: 'Start with you and your family', kicker: 'Article 1 · Required for this draft', status: 'Required', intro: 'The Windsor template begins with your identity and a list of immediate family members who may be potential heirs.', tips: ['Use your full name and current residential address.', 'List a spouse, children, parents and other immediate family members who may be relevant.', 'Family members who inherit must not act as witnesses.'] },
@@ -136,7 +138,42 @@ function render() {
   stopAddressLookup();
   const step = steps[current];
   const progress = Math.round((current / (steps.length - 1)) * 100);
-  root.innerHTML = `<div class="iw-sample-tools"><div><strong>Test the full form</strong><p>Fill every section with fictional information. This replaces any answers in this tab.</p></div><button type="button" class="iw-seed-button" data-seed>${answers.sampleData ? 'Generate new sample data' : 'Fill with sample data'}</button></div>${answers.sampleData ? '<p class="iw-sample-warning" role="status"><strong>Sample data · testing only.</strong> The names, addresses and financial details below are fictional. Downloads will be marked as samples.</p>' : ''}<div class="iw-layout"><nav class="iw-progress" aria-label="Form sections"><p class="iw-progress-title">Your draft</p><div class="iw-progress-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}"><span style="width:${progress}%"></span></div><ol>${steps.map((s, i) => `<li><button type="button" data-go="${i}" ${i > furthest ? 'disabled' : ''} ${i === current ? 'aria-current="step"' : ''}><span class="iw-step-index">${i + 1}</span><span>${s.label}<small>${s.status}</small></span></button></li>`).join('')}</ol></nav><div class="iw-main"><div class="iw-mobile-progress">Section ${current + 1} of ${steps.length}<span>${progress}%</span></div><p class="iw-kicker">${step.kicker}</p><h2 id="iw-step-title" tabindex="-1">${step.title}</h2><p class="iw-step-intro">${step.intro}</p><form id="iw-form" novalidate><div id="iw-errors" role="alert" aria-live="assertive" tabindex="-1"></div>${stepFields(current)}</form>${current < steps.length - 1 ? `<div class="iw-actions"><button type="button" class="button" data-next>Continue <span aria-hidden="true">→</span></button>${current ? '<button type="button" class="iw-back" data-back>Back</button>' : ''}</div>` : `<div class="iw-actions"><button type="button" class="iw-back" data-back>Back to witnesses</button></div>`}</div><aside class="iw-guidance"><p class="iw-guidance-label">Things to keep in mind</p><ul>${step.tips.map(t => `<li>${t}</li>`).join('')}</ul><div class="iw-guidance-foot">Based on the <a href="https://drive.google.com/open?id=1dda59Ce2HcNm8Cp1ZHMrlQ_wZZnChfPO" target="_blank" rel="noopener noreferrer">Windsor Islamic Association template<span class="sr-only"> (opens in a new tab)</span></a>.</div></aside></div>`;
+  root.innerHTML = `<section class="iw-save-tools" aria-label="Save or restore answers"><div><h2>Save your answers on your device</h2><p>Download an answers file now, then load it here to continue later. The file contains your answers in readable text, so keep it private. Loading a file replaces the answers in this tab.</p></div><div class="iw-save-actions"><button type="button" class="iw-save-button" data-save>Download answers file</button><button type="button" class="iw-load-button" data-load>Load answers file</button><input id="iw-load-file" type="file" accept=".json,application/json" hidden></div><p id="iw-save-status" class="iw-save-status" role="status" aria-live="polite">${esc(saveStatus)}</p></section><div class="iw-sample-tools"><div><strong>Test the full form</strong><p>Fill every section with fictional information. This replaces any answers in this tab.</p></div><button type="button" class="iw-seed-button" data-seed>${answers.sampleData ? 'Generate new sample data' : 'Fill with sample data'}</button></div>${answers.sampleData ? '<p class="iw-sample-warning" role="status"><strong>Sample data · testing only.</strong> The names, addresses and financial details below are fictional. Downloads will be marked as samples.</p>' : ''}<div class="iw-layout"><nav class="iw-progress" aria-label="Form sections"><p class="iw-progress-title">Your draft</p><div class="iw-progress-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}"><span style="width:${progress}%"></span></div><ol>${steps.map((s, i) => `<li><button type="button" data-go="${i}" ${i > furthest ? 'disabled' : ''} ${i === current ? 'aria-current="step"' : ''}><span class="iw-step-index">${i + 1}</span><span>${s.label}<small>${s.status}</small></span></button></li>`).join('')}</ol></nav><div class="iw-main"><div class="iw-mobile-progress">Section ${current + 1} of ${steps.length}<span>${progress}%</span></div><p class="iw-kicker">${step.kicker}</p><h2 id="iw-step-title" tabindex="-1">${step.title}</h2><p class="iw-step-intro">${step.intro}</p><form id="iw-form" novalidate><div id="iw-errors" role="alert" aria-live="assertive" tabindex="-1"></div>${stepFields(current)}</form>${current < steps.length - 1 ? `<div class="iw-actions"><button type="button" class="button" data-next>Continue <span aria-hidden="true">→</span></button>${current ? '<button type="button" class="iw-back" data-back>Back</button>' : ''}</div>` : `<div class="iw-actions"><button type="button" class="iw-back" data-back>Back to witnesses</button></div>`}</div><aside class="iw-guidance"><p class="iw-guidance-label">Things to keep in mind</p><ul>${step.tips.map(t => `<li>${t}</li>`).join('')}</ul><div class="iw-guidance-foot">Based on the <a href="https://drive.google.com/open?id=1dda59Ce2HcNm8Cp1ZHMrlQ_wZZnChfPO" target="_blank" rel="noopener noreferrer">Windsor Islamic Association template<span class="sr-only"> (opens in a new tab)</span></a>.</div></aside></div>`;
+}
+
+function setSaveStatus(message) {
+  saveStatus = message;
+  const status = root.querySelector('#iw-save-status');
+  if (status) status.textContent = message;
+}
+
+function saveAnswers() {
+  const blob = new Blob([createSavedAnswers(answers, current, furthest)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `Islamic-Will-Answers-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  setSaveStatus('Answers file downloaded to your device. Keep this unencrypted file private.');
+}
+
+async function loadAnswers(file) {
+  if (!file) return;
+  if (file.size > maxSavedFileBytes) { setSaveStatus('That file is too large. Choose an answers file downloaded from this tool.'); return; }
+  try {
+    const restored = parseSavedAnswers(await file.text());
+    Object.assign(answers, restored.answers);
+    current = restored.current;
+    furthest = restored.furthest;
+    saveStatus = 'Answers restored from your device. Review them before downloading a will draft.';
+    render();
+    document.getElementById('iw-step-title').focus();
+  } catch (error) {
+    setSaveStatus(error.message || 'The answers file could not be read.');
+  }
 }
 
 function capture(event) {
@@ -219,6 +256,12 @@ async function download(format) {
 
 root.addEventListener('input', capture);
 root.addEventListener('change', capture);
+root.addEventListener('change', event => {
+  if (event.target.id !== 'iw-load-file') return;
+  const file = event.target.files?.[0];
+  event.target.value = '';
+  loadAnswers(file);
+});
 root.addEventListener('submit', event => event.preventDefault());
 root.addEventListener('keydown', event => {
   if (event.target.id !== 'iw-testatorAddress' || !addressResults.length) return;
@@ -248,7 +291,9 @@ root.addEventListener('pointerdown', event => {
 });
 root.addEventListener('click', event => {
   const button = event.target.closest('button'); if (!button) return;
-  if (button.hasAttribute('data-seed')) {
+  if (button.hasAttribute('data-save')) saveAnswers();
+  else if (button.hasAttribute('data-load')) root.querySelector('#iw-load-file').click();
+  else if (button.hasAttribute('data-seed')) {
     Object.assign(answers, initialAnswers(), makeSampleAnswers());
     current = steps.length - 1;
     furthest = current;
