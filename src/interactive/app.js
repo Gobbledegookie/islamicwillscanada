@@ -79,7 +79,7 @@ function showAddressOptions() {
   const input = activeAddressInput;
   const list = input?.parentElement.querySelector('.iw-address-options');
   if (!input || !list) return;
-  list.innerHTML = addressResults.map((address, index) => `<li id="${input.id}-option-${index}" role="option" aria-selected="${index === activeAddress}" data-address-index="${index}">${esc(address)}</li>`).join('');
+  list.innerHTML = addressResults.map((address, index) => `<li id="${input.id}-option-${index}" role="option" aria-selected="${index === activeAddress}" data-address-index="${index}">${esc(address.label)}</li>`).join('');
   list.hidden = !addressResults.length;
   input.setAttribute('aria-expanded', String(Boolean(addressResults.length)));
   if (activeAddress < 0) input.removeAttribute('aria-activedescendant');
@@ -92,9 +92,11 @@ function selectAddress(index) {
   const input = activeAddressInput;
   if (!address || !input) return;
   stopAddressLookup();
-  input.value = address;
-  answers[input.dataset.key] = address;
-  input.closest('.iw-address-field').querySelector('.iw-address-status').textContent = 'Address selected. Check it before continuing.';
+  input.value = address.value;
+  answers[input.dataset.key] = address.value;
+  input.closest('.iw-address-field').querySelector('.iw-address-status').textContent = address.kind === 'street'
+    ? 'Street selected. The house number was not verified; check the full address before continuing.'
+    : 'Address selected. Check it before continuing.';
   input.focus();
 }
 
@@ -105,16 +107,26 @@ async function lookupAddress(query, input) {
   const status = input.closest('.iw-address-field').querySelector('.iw-address-status');
   if (status) status.textContent = 'Searching Canadian addresses…';
   try {
-    const url = new URL('https://photon.komoot.io/api/');
-    url.search = new URLSearchParams({ q: query, countrycode: 'CA', lang: 'en', limit: '20' });
-    const response = await fetch(url, { signal: controller.signal });
-    if (!response.ok) throw new Error(`Address lookup returned ${response.status}`);
-    const data = await response.json();
+    const search = async text => {
+      const url = new URL('https://photon.komoot.io/api/');
+      url.search = new URLSearchParams({ q: text, countrycode: 'CA', lang: 'en', limit: '20' });
+      const response = await fetch(url, { signal: controller.signal });
+      if (!response.ok) throw new Error(`Address lookup returned ${response.status}`);
+      return (await response.json()).features || [];
+    };
+    let features = await search(query);
     if (controller.signal.aborted || !root.contains(input) || input !== activeAddressInput || input.value.trim() !== query) return;
-    addressResults = matchingAddresses(data.features, query);
+    let matches = matchingAddresses(features, query);
+    const streetOnlyQuery = query.replace(/^\s*\d+[a-z]?\s+/i, '');
+    if (streetOnlyQuery !== query && /^\S+\s+\S+/.test(streetOnlyQuery) && !matches.some(match => match.exactStreet)) {
+      features = features.concat(await search(streetOnlyQuery));
+      if (controller.signal.aborted || !root.contains(input) || input !== activeAddressInput || input.value.trim() !== query) return;
+      matches = matchingAddresses(features, query);
+    }
+    addressResults = matches;
     activeAddress = -1;
     showAddressOptions();
-    status.textContent = addressResults.length ? `${addressResults.length} matching address suggestions. Use the arrow keys to choose one.` : 'No close match found. You can enter the address manually.';
+    status.textContent = addressResults.length ? `${addressResults.length} matching suggestions. Use the arrow keys to choose one. Street matches do not verify the house number.` : 'No close match found. You can enter the address manually.';
   } catch (error) {
     if (error.name === 'AbortError') return;
     addressResults = [];
