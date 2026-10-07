@@ -1,3 +1,7 @@
+// Keep existing privacy bookmarks working after moving the details to their own page.
+if (location.pathname.replace(/\/$/, '') === '/interactive' && location.hash === '#privacy-details') {
+  location.replace('/privacy/');
+}
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.primary-nav');
 const themeControl = document.querySelector('.theme-control');
