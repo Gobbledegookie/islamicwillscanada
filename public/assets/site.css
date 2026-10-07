@@ -290,10 +290,6 @@ cite { color: var(--muted); font-size: 1rem; font-style: normal; font-weight: 60
 .profile-contact ul { display: flex; flex-wrap: wrap; gap: 5px 22px; margin: 6px 0 0; padding: 0; list-style: none; overflow-wrap: anywhere; }
 .profile-contact li { max-width: 100%; }
 .profile-sources { margin: 16px 0 0; font-size: 1rem; overflow-wrap: anywhere; }
-.profile-earlier { margin-top: 17px; font-size: 1rem; }
-.profile-earlier summary { width: fit-content; cursor: pointer; color: var(--green); font-weight: 650; }
-.profile-earlier ul { margin: 9px 0 0; padding-left: 20px; overflow-wrap: anywhere; }
-.profile-earlier p { margin: 7px 0 0; color: var(--muted); }
 .mission { padding-top: 7px; border-top: 1px solid var(--line); }
 .mission h3 { margin-bottom: 18px; }
 .mission-list { margin: 0; padding-left: 30px; }
