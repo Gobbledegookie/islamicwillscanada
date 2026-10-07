@@ -2,6 +2,7 @@ import { initialAnswers, repeatFields } from './model.js';
 import { makeSampleAnswers } from './sample.js';
 import { createSavedAnswers, maxSavedFileBytes, parseSavedAnswers } from './saved-answers.js';
 import { matchingAddresses } from './address-search.js';
+import quranArtwork from './quran-artwork.json' with { type: 'json' };
 
 const root = document.getElementById('interactive-root');
 const answers = initialAnswers();
@@ -245,7 +246,7 @@ async function download(format) {
   status.textContent = `Preparing your ${format.toUpperCase()} draft…`;
   try {
     const { makeDocx, makePdf } = await import('./export.js');
-    const imageNames = ['windsor-bismillah.png', 'windsor-verse-1.png', 'windsor-verse-2.png'];
+    const imageNames = Object.entries(quranArtwork).flatMap(([name, info]) => format === 'docx' ? [name, info.fallback] : [name]);
     const fetchBytes = async name => {
       const response = await fetch(`/assets/${name}`);
       if (!response.ok) throw new Error(`Document asset could not be loaded: ${name}`);

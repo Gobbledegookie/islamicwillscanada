@@ -1,0 +1,35 @@
+{
+  "quran-bismillah.svg": {
+    "width": 13956,
+    "height": 2937,
+    "displayWidth": 180,
+    "fallback": "quran-bismillah.png",
+    "fallbackWidth": 1500,
+    "fallbackHeight": 316,
+    "alt": "Bismillah: In the name of Allah, the Most Beneficent, the Most Merciful",
+    "text": "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ",
+    "source": "https://quran.com/1/1"
+  },
+  "quran-2-180-line-1.svg": {
+    "width": 42811,
+    "height": 3376,
+    "displayWidth": 420,
+    "fallback": "quran-2-180-line-1.png",
+    "fallbackWidth": 3500,
+    "fallbackHeight": 276,
+    "alt": "Surah Al-Baqarah 2:180, first line in Arabic",
+    "text": "كُتِبَ عَلَيۡكُمۡ إِذَا حَضَرَ أَحَدَكُمُ ٱلۡمَوۡتُ إِن تَرَكَ خَيۡرًا ٱلۡوَصِيَّةُ لِلۡوَٰلِدَيۡنِ",
+    "source": "https://quran.com/2/180"
+  },
+  "quran-2-180-line-2.svg": {
+    "width": 23175,
+    "height": 3295,
+    "displayWidth": 227.36,
+    "fallback": "quran-2-180-line-2.png",
+    "fallbackWidth": 1895,
+    "fallbackHeight": 269,
+    "alt": "Surah Al-Baqarah 2:180, second line in Arabic",
+    "text": "وَٱلۡأَقۡرَبِينَ بِٱلۡمَعۡرُوفِۖ حَقًّا عَلَى ٱلۡمُتَّقِينَ",
+    "source": "https://quran.com/2/180"
+  }
+}

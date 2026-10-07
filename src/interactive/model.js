@@ -1,6 +1,7 @@
 import front from './windsor-front.json' with { type: 'json' };
 import articles from './windsor-articles.json' with { type: 'json' };
 import appendix from './windsor-appendix.json' with { type: 'json' };
+import quranArtwork from './quran-artwork.json' with { type: 'json' };
 
 export const initialAnswers = () => ({
   sampleData: false,
@@ -25,7 +26,7 @@ export const repeatFields = {
 const p = (text, highlight = []) => ({ kind: 'paragraph', text, highlight: Array.isArray(highlight) ? highlight.filter(Boolean) : [] });
 const h = text => ({ kind: /^Article \d+:/.test(text) ? 'article' : /^Schedule \d+:/.test(text) ? 'schedule' : /^(Last Will and Testament|Signatures and attestation|Appendix A:|Addendum A:)/.test(text) ? 'section' : 'heading', text, breakBefore: /^(Introduction|Windsor Islamic Association disclaimer|Last Will and Testament|Signatures and attestation|Appendix A:|Addendum A:)/.test(text) });
 const table = (headers, rows, source = false) => ({ kind: 'table', headers, rows, source });
-const image = (asset, width, alt) => ({ kind: 'image', asset, width, alt });
+const quranImages = Object.entries(quranArtwork).map(([asset, info]) => ({ kind: 'image', asset, width: info.displayWidth, alt: info.alt }));
 const value = (answers, key) => String(answers[key] || '').trim();
 const supplied = text => text || 'Not supplied in this draft';
 const clean = text => text.replace(/\s+/g, ' ').trim();
@@ -74,9 +75,7 @@ export function makeWillBlocks(a) {
     h('Introduction'),
     p(front.introduction[0]),
     p(front.introduction[1]),
-    image('windsor-bismillah.png', 150, 'Arabic invocation from the Windsor template'),
-    image('windsor-verse-1.png', 360, 'Arabic Quranic excerpt from the Windsor template'),
-    image('windsor-verse-2.png', 270, 'Continuation of the Arabic excerpt'),
+    ...quranImages,
     { kind: 'quote', text: front.introduction[3] },
     p(front.introduction[4]),
     { kind: 'quote', text: front.introduction[5] },

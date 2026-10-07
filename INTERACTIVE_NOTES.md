@@ -18,7 +18,13 @@ The `/interactive/` route is a guided drafting interface. It does not certify th
 
 The source document's long inheritance appendix is retained as reference text. The tool does **not** calculate shares, verify the one-third gift limit, or reconcile an estate. Empty optional fields are marked “Not supplied in this draft.” It requires names and addresses for appointments and witnesses to avoid a deceptively finished document. These are *draft-generation checks*, not a determination of legal requirements.
 
-The DOCX and PDF exports share the same content blocks and use a consistent print layout. Both include a contents page, distinct article and schedule headings, the Windsor Arabic artwork, bordered inheritance and finance tables, highlighted entered details, page numbers, and signing space. Continuations of the original inheritance tables are joined before layout so headers repeat cleanly across pages. The filled sample's yellow editing notes are deliberately excluded from the generated draft.
+The DOCX and PDF exports share the same content blocks and use a consistent print layout. Both include a contents page, distinct article and schedule headings, Quranic Arabic artwork, bordered inheritance and finance tables, highlighted entered details, page numbers, and signing space. Continuations of the original inheritance tables are joined before layout so headers repeat cleanly across pages. The filled sample's yellow editing notes are deliberately excluded from the generated draft.
+
+## Arabic artwork
+
+The introduction contains the Bismillah and [Surah Al-Baqarah 2:180](https://quran.com/2/180). The old low-resolution template images have been replaced with glyph outlines shaped from Quran.com's `text_qpc_hafs` word data and its matching KFGQPC Uthmanic Hafs font, following the [Quran.com font documentation](https://api-docs.quran.com/docs/tutorials/fonts/font-rendering/). The entire verse, including diacritics and pause marks, is retained across two lines at the same type size. The PDF draws vector paths. DOCX embeds SVG with a PNG fallback of at least 600 DPI at its printed size. Exports need no installed Arabic font or third-party request.
+
+Reviewed text, source URLs and the font checksum are recorded in `scripts/quran-text.json`; dimensions and text alternatives are in `src/interactive/quran-artwork.json`. To regenerate, run `node scripts/generate-quran-artwork.mjs <path-to-sharp-package> [font-file]` from the project root. The script uses the existing fontkit dependency and Sharp as an authoring tool, validates the font checksum and rejects missing glyphs. The source font is not shipped to visitors; its [license](licenses/UthmanicHafs-LICENSE.txt) is retained for provenance. Visually check both exports after regeneration.
 
 ## Items requiring human review
 

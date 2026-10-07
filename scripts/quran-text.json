@@ -1,0 +1,44 @@
+{
+  "reviewed": "2026-10-07",
+  "textField": "text_qpc_hafs",
+  "font": {
+    "name": "KFGQPC HAFS Uthmanic Script Regular, version 0.18",
+    "url": "https://verses.quran.foundation/fonts/quran/hafs/uthmanic_hafs/UthmanicHafs1Ver18.ttf",
+    "sha256": "a0636e68e375af9552470d67773936f54d536e6586ce2608311b2fe7f9cbec3a",
+    "documentation": "https://api-docs.quran.com/docs/tutorials/fonts/font-rendering/"
+  },
+  "bismillah": {
+    "key": "1:1",
+    "url": "https://quran.com/1/1",
+    "api": "https://api.quran.com/api/v4/verses/by_key/1:1?words=true&word_fields=text_qpc_hafs",
+    "words": [
+      "بِسۡمِ",
+      "ٱللَّهِ",
+      "ٱلرَّحۡمَٰنِ",
+      "ٱلرَّحِيمِ"
+    ]
+  },
+  "verse": {
+    "key": "2:180",
+    "url": "https://quran.com/2/180",
+    "api": "https://api.quran.com/api/v4/verses/by_key/2:180?words=true&word_fields=text_qpc_hafs",
+    "words": [
+      "كُتِبَ",
+      "عَلَيۡكُمۡ",
+      "إِذَا",
+      "حَضَرَ",
+      "أَحَدَكُمُ",
+      "ٱلۡمَوۡتُ",
+      "إِن",
+      "تَرَكَ",
+      "خَيۡرًا",
+      "ٱلۡوَصِيَّةُ",
+      "لِلۡوَٰلِدَيۡنِ",
+      "وَٱلۡأَقۡرَبِينَ",
+      "بِٱلۡمَعۡرُوفِۖ",
+      "حَقًّا",
+      "عَلَى",
+      "ٱلۡمُتَّقِينَ"
+    ]
+  }
+}

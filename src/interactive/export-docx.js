@@ -1,6 +1,7 @@
 import { AlignmentType, BorderStyle, Document, Footer, Header, HeadingLevel, ImageRun, PageNumber, Packer, Paragraph, Table, TableCell, TableRow, TextRun, WidthType } from 'docx';
 import { makeWillBlocks } from './model.js';
-import { cellValue, columnFractions, filledHex, imageDimensions, inkHex, mutedHex, ruleHex, textParts } from './document-style.js';
+import { cellValue, columnFractions, filledHex, inkHex, mutedHex, ruleHex, textParts } from './document-style.js';
+import quranArtwork from './quran-artwork.json' with { type: 'json' };
 
 function runs(block, { size = 21, bold = false, italic = false, color = inkHex } = {}) {
   return textParts(block.text, block.highlight).map(part => new TextRun({
@@ -53,12 +54,13 @@ function renderBlock(block, assets) {
   if (block.kind === 'table') return [table(block)];
   if (block.kind === 'signature') return signature(block);
   if (block.kind === 'image') {
-    const data = assets[block.asset];
-    if (!data) throw new Error(`Missing Windsor image: ${block.asset}`);
-    const [naturalWidth, naturalHeight] = imageDimensions[block.asset];
+    const data = assets[block.asset], artwork = quranArtwork[block.asset];
+    const fallback = artwork && assets[artwork.fallback];
+    if (!data || !fallback) throw new Error(`Missing Quran artwork: ${block.asset}`);
     return [new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 80, after: 110 }, children: [new ImageRun({
-      type: 'png', data, transformation: { width: block.width, height: Math.round(block.width * naturalHeight / naturalWidth) },
-      altText: { title: block.alt, description: block.alt, name: block.alt }
+      type: 'svg', data, fallback: { type: 'png', data: fallback },
+      transformation: { width: block.width, height: Math.round(block.width * artwork.height / artwork.width) },
+      altText: { title: block.alt, description: `${artwork.text} — ${artwork.source}`, name: block.alt }
     })] })];
   }
   if (block.kind === 'title') return [new Paragraph({ heading: HeadingLevel.TITLE, spacing: { before: 950, after: 250 }, children: runs(block, { size: 38, bold: true }) })];

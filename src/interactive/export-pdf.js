@@ -1,7 +1,8 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import { makeWillBlocks } from './model.js';
-import { cellValue, columnFractions, filledHex, imageDimensions, inkHex, mutedHex, ruleHex, textParts } from './document-style.js';
+import { cellValue, columnFractions, filledHex, inkHex, mutedHex, ruleHex, textParts } from './document-style.js';
+import quranArtwork from './quran-artwork.json' with { type: 'json' };
 
 const colour = hex => rgb(...[0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16) / 255));
 const ink = colour(inkHex), muted = colour(mutedHex), filled = colour(filledHex), rule = colour(ruleHex);
@@ -32,8 +33,6 @@ export async function makePdf(answers, regularBytes, boldBytes, assets = {}) {
   pdf.registerFontkit(fontkit);
   const regular = await pdf.embedFont(regularBytes, { subset: true });
   const bold = await pdf.embedFont(boldBytes, { subset: true });
-  const pictures = {};
-  for (const [name, data] of Object.entries(assets)) pictures[name] = await pdf.embedPng(data);
   const pageWidth = 612, pageHeight = 792, left = 53, right = 53, top = 69, bottom = 83;
   const contentWidth = pageWidth - left - right;
   const pages = [];
@@ -90,12 +89,16 @@ export async function makePdf(answers, regularBytes, boldBytes, assets = {}) {
     richText(block, { size, lineHeight: size * 1.42, gap: section ? 17 : 11, baseFont: bold });
   }
   function image(block) {
-    const picture = pictures[block.asset];
-    if (!picture) throw new Error(`Missing Windsor image: ${block.asset}`);
-    const [naturalWidth, naturalHeight] = imageDimensions[block.asset];
-    const height = block.width * naturalHeight / naturalWidth;
+    const data = assets[block.asset], artwork = quranArtwork[block.asset];
+    if (!data || !artwork) throw new Error(`Missing Quran artwork: ${block.asset}`);
+    const svg = new TextDecoder().decode(data);
+    const path = svg.match(/<path fill="#000000" d="([^"]+)"\/>/)?.[1];
+    if (!path) throw new Error(`Invalid Quran artwork: ${block.asset}`);
+    const scale = block.width / artwork.width;
+    const height = artwork.height * scale;
     ensure(height + 15);
-    page.drawImage(picture, { x: left + (contentWidth - block.width) / 2, y: y - height, width: block.width, height });
+    // Draw the reviewed glyph outlines directly so Arabic stays sharp at any zoom.
+    page.drawSvgPath(path, { x: left + (contentWidth - block.width) / 2, y, scale, color: rgb(0, 0, 0) });
     y -= height + 14;
   }
   function table(block) {

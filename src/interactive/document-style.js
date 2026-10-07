@@ -3,11 +3,6 @@ export const mutedHex = '52645A';
 export const filledHex = '165A7B';
 export const ruleHex = 'D2DBD4';
 export const blank = 'Not supplied in this draft';
-export const imageDimensions = {
-  'windsor-bismillah.png': [128, 50],
-  'windsor-verse-1.png': [464, 49],
-  'windsor-verse-2.png': [332, 46]
-};
 export const cellValue = (text, source = false) => source ? String(text ?? '') : String(text || blank);
 export function columnFractions(block) {
   if (block.headers.length === 2) return block.source ? [0.42, 0.58] : [0.57, 0.43];
